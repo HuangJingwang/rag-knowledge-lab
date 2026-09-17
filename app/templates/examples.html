@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light">
+<title>文章案例演示 · RAG 数据实验室</title>
+<link rel="stylesheet" href="/static/examples.css"><link rel="stylesheet" href="/static/graph-stage.css">
+<script src="/static/graph-stage.js" defer></script><script src="/static/examples.js" defer></script>
+</head>
+<body>
+<header class="case-topbar"><a class="case-brand" href="/">RAG 数据实验室</a><nav aria-label="主导航"><a href="/">原文阅读</a><a href="/examples" aria-current="page">文章案例</a><a href="/explore">检索与时序</a><a href="/entities">LightRAG 存储</a><a href="/article/" target="_blank" rel="noopener">技术文章 ↗</a></nav><button id="projector" type="button" aria-pressed="false">投屏模式</button></header>
+<div class="case-layout">
+<aside class="case-sidebar"><p class="side-label">沿着文章，逐个演示</p><nav id="case-list" aria-label="方法与案例"></nav><p class="side-note">同一份原文可以用于不同方法。<br>比较找证据的过程，不比较预设答案。</p></aside>
+<main id="case-main" aria-busy="true">
+<header class="case-intro"><p class="eyebrow" id="case-name">文章案例演示</p><h1 id="case-question">正在读取案例</h1><p class="case-feature" id="case-feature">从原文、处理过程和来源中，观察方法的特点。</p></header>
+<div class="execution-line"><span id="case-mode"></span><a id="reference-link" target="_blank" rel="noopener">方法说明 ↗</a></div>
+<p class="execution-boundary" id="case-boundary"></p>
+<section class="materials" aria-labelledby="materials-heading"><h2 id="materials-heading">这次用到的资料</h2><div id="material-list"></div></section>
+<div class="run-bar"><div id="variant-box" hidden><label for="variant">观察条件</label><select id="variant"></select></div><button id="run-case" class="primary" type="button" disabled>载入案例</button><p id="run-status" role="status" aria-live="polite">正在读取文档…</p></div>
+<section class="process-section" aria-label="处理过程"><nav id="step-list" aria-label="过程步骤"></nav><div class="step-panel" id="step-panel"><p>选一个案例，查看它怎样使用资料。</p></div></section>
+<aside class="teaching-note"><h2>讲解时看这里</h2><p id="takeaway"></p></aside>
+<footer>原文章案例与补充资料均为虚构。查询结果照实展示，讲解结论由人工编写。</footer>
+</main>
+</div>
+<dialog id="source-dialog" aria-labelledby="source-title"><header><div><p id="source-id"></p><h2 id="source-title"></h2></div><button type="button" id="close-source">关闭</button></header><div id="source-text"></div><a id="source-reader" target="_blank" rel="noopener">在完整文章中定位 ↗</a></dialog>
+</body></html>

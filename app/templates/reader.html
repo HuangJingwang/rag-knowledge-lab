@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>原文阅读 · RAG 数据实验室</title>
+  <link rel="stylesheet" href="/static/reader.css">
+  <link rel="stylesheet" href="/static/graph-stage.css">
+  <script src="/static/graph-stage.js" defer></script>
+  <script src="/static/reader.js" defer></script>
+</head>
+<body>
+  <header class="reader-topbar">
+    <a class="reader-brand" href="/">RAG 数据实验室</a>
+    <nav class="reader-nav" aria-label="主导航"><a class="current" href="/" aria-current="page">原文阅读</a><a href="/explore">检索与关系图</a><a href="/examples">文章案例</a><a href="/entities">LightRAG 实体</a><a href="/article/" target="_blank" rel="noopener noreferrer">技术文章 ↗</a>{% if local_database_tools %}<a href="{{ attu_url }}" target="_blank" rel="noopener noreferrer">Milvus ↗</a><a href="{{ neo4j_browser_url }}" target="_blank" rel="noopener noreferrer">Neo4j ↗</a>{% endif %}</nav>
+    <button class="reader-button quiet-button projection-toggle" id="reader-projection" type="button" aria-pressed="false">投屏模式</button>
+  </header>
+  <main class="reader-workspace">
+    <aside class="source-library" aria-label="来源文档库">
+      <details id="library-details" open>
+        <summary class="library-heading"><span>来源文档</span><span class="count-badge" id="library-count">…</span></summary>
+        <div class="library-content">
+          <label class="sr-only" for="source-filter">筛选来源文档</label><input class="source-filter" id="source-filter" type="search" placeholder="筛选来源" autocomplete="off" disabled>
+          <div class="library-state" id="library-state" role="status">正在读取本地语料…</div>
+          <div class="source-list" id="source-list"></div>
+          <button class="reader-button quiet-button" id="documents-retry" type="button" hidden>重新读取文档</button>
+          <p class="library-footnote">虚构语料 · 真实存储<br>同一来源的历史与新版本放在一起</p>
+        </div>
+      </details>
+    </aside>
+
+    <section class="original-pane" aria-labelledby="document-title" aria-busy="true" id="original-pane">
+      <div class="reader-toolbar"><span class="reader-location" id="reader-location">原文阅读</span><div class="reader-tools"><button class="reader-button quiet-button source-graph-button" id="source-graph" type="button" disabled>查看本文关系图</button><button class="chunk-toggle" id="chunk-toggle" type="button" aria-pressed="true" disabled><span class="toggle-track" aria-hidden="true"></span>分块标注</button></div></div>
+      <div class="original-scroll" id="original-scroll">
+        <div class="document-heading"><p class="document-kind" id="document-kind">项目文档</p><h1 id="document-title" tabindex="-1">正在打开原文</h1><p class="document-info" id="document-info"></p><p class="document-boundary">虚构演示文档 · 底色与下划线标识已入库片段</p></div>
+        <p class="reader-feedback" id="reader-feedback" role="status" aria-live="polite"></p>
+        <div class="document-chunks" id="document-chunks"><div class="reader-empty"><strong>正在读取文档</strong><p>加载后可阅读全文，分块记录收在文末。</p></div></div>
+        <div class="reader-source-footer" id="reader-source-footer" hidden></div>
+      </div>
+    </section>
+
+    <aside class="conversation-pane" aria-labelledby="conversation-heading">
+      <header class="conversation-heading"><div><h2 id="conversation-heading">提问与证据</h2><p>读原文，也可以从问题找到原文。</p></div><button class="reader-button quiet-button compact-button" id="latest-graph" type="button" disabled title="完成一次检索后查看本次关系图">本次关系图</button></header>
+      <div class="retrieval-boundary"><strong>独立检索全部语料</strong><span>不读取对话上下文，不调用生成模型。</span></div>
+      <div class="conversation-scroll" id="conversation-scroll" tabindex="0" aria-label="提问与检索记录">
+        <div class="conversation-welcome" id="conversation-welcome"><h3>从原文中查找依据</h3><p>提问后，点击证据定位原文。</p><div class="conversation-presets" aria-label="示例问题"><button class="preset-button" type="button" data-query="李明调走后，哪个项目的上线依赖需要重新安排？" disabled><span>依赖追踪</span><span aria-hidden="true">↗</span></button><button class="preset-button" type="button" data-query="关闭本地缓存后，不扩容的方案还成立吗？" disabled><span>前提变化</span><span aria-hidden="true">↗</span></button><button class="preset-button" type="button" data-query="支付回调失败后能直接重试吗？" disabled><span>规则与条件</span><span aria-hidden="true">↗</span></button></div></div>
+        <div id="conversation-messages"></div>
+      </div>
+      <div class="conversation-compose">
+        <form id="question-form"><label class="sr-only" for="question-input">向全部语料提问</label><textarea id="question-input" name="query" rows="3" maxlength="500" placeholder="问一个关于项目、会议或任务的问题…" required disabled></textarea><div class="compose-actions"><span id="compose-scope">范围：全部语料</span><button class="reader-button primary-button" id="question-submit" type="submit" disabled>检索证据</button></div></form>
+        <p class="compose-hint" id="question-state" role="status" aria-live="polite">原文载入后即可提问。Enter 提交，Shift + Enter 换行。</p>
+      </div>
+    </aside>
+  </main>
+  <dialog class="reader-graph-dialog" id="reader-graph-dialog" aria-labelledby="reader-graph-title">
+    <header class="dialog-heading"><div><p id="reader-graph-caption">本次检索返回的关系</p><h2 id="reader-graph-title">关联路径</h2></div><button class="reader-button quiet-button" id="close-reader-graph" type="button">关闭</button></header>
+    <p class="dialog-query" id="reader-graph-query"></p><div id="reader-graph-stage"></div><p class="graph-boundary">关系预先整理，展示不代表当前状态；请结合原文时间核对。</p><a class="dialog-workbench-link" href="/explore">打开完整关系图工作台 ↗</a>
+  </dialog>
+</body>
+</html>

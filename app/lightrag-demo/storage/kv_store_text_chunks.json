@@ -1,0 +1,67 @@
+{
+  "chunk-dea59eb8420a967ce699d3de08b0c0cd": {
+    "content": "# 接口约定：查询结果与幂等规则\n\n支付结果查询接口由陈宇负责，按照支付流水号返回处理中、成功或失败。只有结果为成功时才推动订单进入已支付状态；处理中应按退避策略再次查询。重复查询和重复回调不得重复发货。支付回调改造依赖这一约定。",
+    "source_id": "demo:chunk:03",
+    "tokens": 78,
+    "chunk_order_index": 0,
+    "full_doc_id": "demo-custom-kg-payment",
+    "file_path": "chunk-03.md",
+    "status": "processed",
+    "llm_cache_list": [],
+    "create_time": 1789553461,
+    "update_time": 1789553461,
+    "_id": "chunk-dea59eb8420a967ce699d3de08b0c0cd"
+  },
+  "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a": {
+    "content": "# 验收规范：依赖两个任务完成\n\n《支付联调验收规范》要求支付结果查询接口和支付回调改造都具备可用测试版本，再执行回调丢失、重复回调、查询超时三个用例。接口返回状态的判断依据引用《接口约定：查询结果与幂等规则》。验收负责人王蕾需要同时核对任务交付和接入方案范围。",
+    "source_id": "demo:chunk:11",
+    "tokens": 96,
+    "chunk_order_index": 0,
+    "full_doc_id": "demo-custom-kg-payment",
+    "file_path": "chunk-11.md",
+    "status": "processed",
+    "llm_cache_list": [],
+    "create_time": 1789553461,
+    "update_time": 1789553461,
+    "_id": "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a"
+  },
+  "chunk-89af6ea526853b5d542603c166004337": {
+    "content": "# 最新任务：支付结果查询接口已交付\n\n截至 9 月 15 日 17:00，陈宇负责的支付结果查询接口已完成开发并交付测试环境，状态为已完成。支付状态映射问题已解决；支付回调改造可以开始主动查询补偿联调。该记录替代 9 月 7 日任务快照中的开发中状态和 9 月 10 日的延期进展。",
+    "source_id": "demo:chunk:17",
+    "tokens": 97,
+    "chunk_order_index": 0,
+    "full_doc_id": "demo-custom-kg-payment",
+    "file_path": "chunk-17.md",
+    "status": "processed",
+    "llm_cache_list": [],
+    "create_time": 1789553461,
+    "update_time": 1789553461,
+    "_id": "chunk-89af6ea526853b5d542603c166004337"
+  },
+  "chunk-6bdcfd4ae28959019954678df0a4a519": {
+    "content": "# 最新任务：支付回调改造正在联调\n\n截至 9 月 16 日 09:00，李明负责的支付回调改造处于联调中，预计 9 月 17 日完成。查询接口已在 9 月 15 日交付，当前剩余工作是验证查询超时后的补偿和重复回调去重。任务没有完成，不能仅凭依赖接口交付就判断整体已完成。",
+    "source_id": "demo:chunk:18",
+    "tokens": 99,
+    "chunk_order_index": 0,
+    "full_doc_id": "demo-custom-kg-payment",
+    "file_path": "chunk-18.md",
+    "status": "processed",
+    "llm_cache_list": [],
+    "create_time": 1789553461,
+    "update_time": 1789553461,
+    "_id": "chunk-6bdcfd4ae28959019954678df0a4a519"
+  },
+  "chunk-34c7ed20deaba292969335ba306765fd": {
+    "content": "# 最新任务：支付联调验收尚未开始\n\n截至 9 月 16 日 09:10，王蕾组织的支付联调验收状态为待开始，计划 9 月 18 日执行。支付结果查询接口已完成，但支付回调改造仍在联调，因此验收尚未满足全部前置条件。该状态是本演示截止时间的快照，不代表真实业务实时数据。",
+    "source_id": "demo:chunk:19",
+    "tokens": 94,
+    "chunk_order_index": 0,
+    "full_doc_id": "demo-custom-kg-payment",
+    "file_path": "chunk-19.md",
+    "status": "processed",
+    "llm_cache_list": [],
+    "create_time": 1789553461,
+    "update_time": 1789553461,
+    "_id": "chunk-34c7ed20deaba292969335ba306765fd"
+  }
+}

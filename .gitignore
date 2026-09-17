@@ -1,0 +1,15 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+**/.venv/
+**/__pycache__/
+*.py[cod]
+.DS_Store
+*.log
+**/.run/
+**/.locks/
+*.tar
+*.tar.gz
+*.zip
+# The model cache and LightRAG demonstration stores are intentionally versioned.

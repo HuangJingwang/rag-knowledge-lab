@@ -1,0 +1,1429 @@
+{
+  "description": "虚构演示数据；固定观察时点 2026-09-16 10:00 +08:00。关系时效使用左闭右开区间。",
+  "nodes": [
+    {
+      "id": "demo:project:payment",
+      "label": "Project",
+      "name": "商城支付升级项目"
+    },
+    {
+      "id": "demo:goal:reduce-missed-payment",
+      "label": "Goal",
+      "name": "降低支付漏单率",
+      "target": "低于 0.05%"
+    },
+    {
+      "id": "demo:person:li-ming",
+      "label": "Person",
+      "name": "李明"
+    },
+    {
+      "id": "demo:person:wang-lei",
+      "label": "Person",
+      "name": "王蕾"
+    },
+    {
+      "id": "demo:person:chen-yu",
+      "label": "Person",
+      "name": "陈宇"
+    },
+    {
+      "id": "demo:interface:query",
+      "label": "Interface",
+      "name": "支付结果查询接口",
+      "description": "按支付流水号查询处理状态"
+    },
+    {
+      "id": "demo:system:gateway",
+      "label": "System",
+      "name": "统一支付网关"
+    },
+    {
+      "id": "demo:system:payment",
+      "label": "System",
+      "name": "支付服务"
+    },
+    {
+      "id": "demo:scope:standard",
+      "label": "CustomerScope",
+      "name": "标准接入客户"
+    },
+    {
+      "id": "demo:scope:pilot",
+      "label": "CustomerScope",
+      "name": "试点接入客户"
+    },
+    {
+      "id": "demo:decision:direct",
+      "label": "Decision",
+      "name": "第一小时：新接入客户直连",
+      "decision": "直连支付服务",
+      "recorded_at": "2026-09-07T10:25:00+08:00",
+      "status": "已替代"
+    },
+    {
+      "id": "demo:decision:gateway",
+      "label": "Decision",
+      "name": "第三小时：统一走支付网关",
+      "decision": "通过统一支付网关",
+      "recorded_at": "2026-09-07T12:15:00+08:00",
+      "status": "标准范围有效"
+    },
+    {
+      "id": "demo:decision:pilot",
+      "label": "Decision",
+      "name": "下周：仅试点客户临时直连",
+      "decision": "试点窗口内直连支付服务",
+      "recorded_at": "2026-09-14T10:00:00+08:00",
+      "status": "限期有效"
+    },
+    {
+      "id": "demo:doc:charter",
+      "label": "Document",
+      "name": "项目立项书",
+      "source_type": "document",
+      "updated_at": "2026-09-01T09:00:00+08:00"
+    },
+    {
+      "id": "demo:doc:payment-design",
+      "label": "Document",
+      "name": "支付补偿设计",
+      "source_type": "document",
+      "updated_at": "2026-09-04T11:00:00+08:00"
+    },
+    {
+      "id": "demo:doc:query-contract",
+      "label": "Document",
+      "name": "接口查询约定",
+      "source_type": "document",
+      "updated_at": "2026-09-03T14:00:00+08:00"
+    },
+    {
+      "id": "demo:task:query-api",
+      "label": "Task",
+      "name": "支付结果查询接口开发",
+      "source_type": "task",
+      "updated_at": "2026-09-15T17:00:00+08:00",
+      "status": "已完成",
+      "as_of": "2026-09-16T10:00:00+08:00"
+    },
+    {
+      "id": "demo:task:callback",
+      "label": "Task",
+      "name": "支付回调改造",
+      "source_type": "task",
+      "updated_at": "2026-09-16T09:00:00+08:00",
+      "status": "联调中",
+      "as_of": "2026-09-16T10:00:00+08:00"
+    },
+    {
+      "id": "demo:task:acceptance",
+      "label": "Task",
+      "name": "支付联调验收",
+      "source_type": "task",
+      "updated_at": "2026-09-16T09:10:00+08:00",
+      "status": "待开始",
+      "as_of": "2026-09-16T10:00:00+08:00"
+    },
+    {
+      "id": "demo:doc:responsibility",
+      "label": "Document",
+      "name": "项目职责说明",
+      "source_type": "document",
+      "updated_at": "2026-09-07T09:30:00+08:00"
+    },
+    {
+      "id": "demo:meeting:0907",
+      "label": "Meeting",
+      "name": "9 月 7 日支付评审会议",
+      "source_type": "meeting",
+      "updated_at": "2026-09-07T12:15:00+08:00"
+    },
+    {
+      "id": "demo:doc:access-design",
+      "label": "Document",
+      "name": "支付接入方案",
+      "source_type": "document",
+      "updated_at": "2026-09-08T10:00:00+08:00"
+    },
+    {
+      "id": "demo:doc:acceptance-plan",
+      "label": "Document",
+      "name": "支付联调验收规范",
+      "source_type": "document",
+      "updated_at": "2026-09-08T15:00:00+08:00"
+    },
+    {
+      "id": "demo:meeting:0910",
+      "label": "Meeting",
+      "name": "9 月 10 日延期协调会议",
+      "source_type": "meeting",
+      "updated_at": "2026-09-10T10:30:00+08:00"
+    },
+    {
+      "id": "demo:meeting:0914",
+      "label": "Meeting",
+      "name": "9 月 14 日项目评审会议",
+      "source_type": "meeting",
+      "updated_at": "2026-09-14T11:10:00+08:00"
+    },
+    {
+      "id": "demo:doc:pilot-addendum",
+      "label": "Document",
+      "name": "试点接入补充说明",
+      "source_type": "document",
+      "updated_at": "2026-09-14T11:00:00+08:00"
+    },
+    {
+      "id": "demo:doc:lessons",
+      "label": "Document",
+      "name": "支付项目经验整理",
+      "source_type": "document",
+      "updated_at": "2026-09-16T10:00:00+08:00"
+    },
+    {
+      "id": "demo:article:capacity-report",
+      "label": "Document",
+      "name": "订单服务压测报告",
+      "source_type": "document",
+      "updated_at": "2026-09-08T10:00:00+08:00"
+    },
+    {
+      "id": "demo:article:launch-plan",
+      "label": "Document",
+      "name": "大促上线方案",
+      "source_type": "document",
+      "updated_at": "2026-09-09T10:00:00+08:00"
+    },
+    {
+      "id": "demo:article:cache-meeting",
+      "label": "Meeting",
+      "name": "大促缓存策略变更会议纪要",
+      "source_type": "meeting",
+      "updated_at": "2026-09-17T09:00:00+08:00"
+    },
+    {
+      "id": "demo:article:handover-task",
+      "label": "Document",
+      "name": "支付回调改造任务交接记录",
+      "source_type": "task",
+      "updated_at": "2026-09-17T09:00:00+08:00"
+    },
+    {
+      "id": "demo:article:payment-launch",
+      "label": "Document",
+      "name": "商城支付升级项目上线计划",
+      "source_type": "document",
+      "updated_at": "2026-09-17T09:10:00+08:00"
+    },
+    {
+      "id": "demo:article:staff-meeting",
+      "label": "Meeting",
+      "name": "支付项目人员调整会议纪要",
+      "source_type": "meeting",
+      "updated_at": "2026-09-17T10:00:00+08:00"
+    },
+    {
+      "id": "demo:article:retry-spec",
+      "label": "Document",
+      "name": "支付接口规范",
+      "source_type": "document",
+      "updated_at": "2026-09-08T12:00:00+08:00"
+    },
+    {
+      "id": "demo:article:warehouse-review",
+      "label": "Document",
+      "name": "仓储项目季度复盘",
+      "source_type": "document",
+      "updated_at": "2026-09-16T10:00:00+08:00"
+    },
+    {
+      "id": "demo:article:crm-review",
+      "label": "Document",
+      "name": "客户管理项目季度复盘",
+      "source_type": "document",
+      "updated_at": "2026-09-16T11:00:00+08:00"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "demo:edge:001",
+      "start": "demo:project:payment",
+      "type": "SUPPORTS",
+      "end": "demo:goal:reduce-missed-payment",
+      "source_ids": [
+        "demo:chunk:01"
+      ]
+    },
+    {
+      "id": "demo:edge:002",
+      "start": "demo:person:wang-lei",
+      "type": "MANAGES",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:01",
+        "demo:chunk:07"
+      ]
+    },
+    {
+      "id": "demo:edge:003",
+      "start": "demo:person:chen-yu",
+      "type": "RESPONSIBLE_FOR",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:17"
+      ]
+    },
+    {
+      "id": "demo:edge:004",
+      "start": "demo:task:query-api",
+      "type": "BELONGS_TO",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:17"
+      ]
+    },
+    {
+      "id": "demo:edge:005",
+      "start": "demo:person:li-ming",
+      "type": "RESPONSIBLE_FOR",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:006",
+      "start": "demo:task:callback",
+      "type": "BELONGS_TO",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:007",
+      "start": "demo:person:wang-lei",
+      "type": "RESPONSIBLE_FOR",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:008",
+      "start": "demo:task:acceptance",
+      "type": "BELONGS_TO",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:009",
+      "start": "demo:person:li-ming",
+      "type": "PARTICIPATED_IN",
+      "end": "demo:meeting:0907",
+      "source_ids": [
+        "demo:chunk:07",
+        "demo:chunk:08",
+        "demo:chunk:09"
+      ]
+    },
+    {
+      "id": "demo:edge:010",
+      "start": "demo:task:query-api",
+      "type": "DELIVERS",
+      "end": "demo:interface:query",
+      "source_ids": [
+        "demo:chunk:03",
+        "demo:chunk:17"
+      ]
+    },
+    {
+      "id": "demo:edge:011",
+      "start": "demo:task:callback",
+      "type": "DEPENDS_ON",
+      "end": "demo:interface:query",
+      "source_ids": [
+        "demo:chunk:02",
+        "demo:chunk:05",
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:012",
+      "start": "demo:task:callback",
+      "type": "DEPENDS_ON",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:05",
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:013",
+      "start": "demo:task:acceptance",
+      "type": "DEPENDS_ON",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:06",
+        "demo:chunk:11",
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:014",
+      "start": "demo:task:acceptance",
+      "type": "DEPENDS_ON",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:06",
+        "demo:chunk:11",
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:015",
+      "start": "demo:task:callback",
+      "type": "SUPPORTS",
+      "end": "demo:goal:reduce-missed-payment",
+      "source_ids": [
+        "demo:chunk:02",
+        "demo:chunk:05"
+      ]
+    },
+    {
+      "id": "demo:edge:016",
+      "start": "demo:task:acceptance",
+      "type": "VERIFIES",
+      "end": "demo:goal:reduce-missed-payment",
+      "source_ids": [
+        "demo:chunk:01",
+        "demo:chunk:06"
+      ]
+    },
+    {
+      "id": "demo:edge:017",
+      "start": "demo:task:callback",
+      "type": "SPECIFIED_BY",
+      "end": "demo:doc:payment-design",
+      "source_ids": [
+        "demo:chunk:02"
+      ]
+    },
+    {
+      "id": "demo:edge:018",
+      "start": "demo:doc:payment-design",
+      "type": "BASED_ON",
+      "end": "demo:doc:query-contract",
+      "source_ids": [
+        "demo:chunk:02",
+        "demo:chunk:03"
+      ],
+      "section": "查询状态与幂等规则"
+    },
+    {
+      "id": "demo:edge:019",
+      "start": "demo:doc:acceptance-plan",
+      "type": "BASED_ON",
+      "end": "demo:doc:query-contract",
+      "source_ids": [
+        "demo:chunk:11"
+      ],
+      "section": "查询状态判断"
+    },
+    {
+      "id": "demo:edge:020",
+      "start": "demo:doc:access-design",
+      "type": "BASED_ON",
+      "end": "demo:decision:gateway",
+      "source_ids": [
+        "demo:chunk:10"
+      ],
+      "section": "新客户接入路径"
+    },
+    {
+      "id": "demo:edge:021",
+      "start": "demo:doc:pilot-addendum",
+      "type": "BASED_ON",
+      "end": "demo:decision:pilot",
+      "source_ids": [
+        "demo:chunk:15"
+      ],
+      "section": "试点客户接入路径"
+    },
+    {
+      "id": "demo:edge:022",
+      "start": "demo:doc:pilot-addendum",
+      "type": "PARTIALLY_OVERRIDES",
+      "end": "demo:doc:access-design",
+      "source_ids": [
+        "demo:chunk:14",
+        "demo:chunk:15"
+      ],
+      "scope": "试点接入客户",
+      "valid_from": "2026-09-14T10:00:00+08:00",
+      "valid_to": "2026-09-21T00:00:00+08:00"
+    },
+    {
+      "id": "demo:edge:023",
+      "start": "demo:decision:direct",
+      "type": "CONFIRMED_IN",
+      "end": "demo:meeting:0907",
+      "source_ids": [
+        "demo:chunk:08"
+      ]
+    },
+    {
+      "id": "demo:edge:024",
+      "start": "demo:decision:direct",
+      "type": "ABOUT",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:08"
+      ]
+    },
+    {
+      "id": "demo:edge:025",
+      "start": "demo:decision:gateway",
+      "type": "CONFIRMED_IN",
+      "end": "demo:meeting:0907",
+      "source_ids": [
+        "demo:chunk:09"
+      ]
+    },
+    {
+      "id": "demo:edge:026",
+      "start": "demo:decision:gateway",
+      "type": "ABOUT",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:09"
+      ]
+    },
+    {
+      "id": "demo:edge:027",
+      "start": "demo:decision:pilot",
+      "type": "CONFIRMED_IN",
+      "end": "demo:meeting:0914",
+      "source_ids": [
+        "demo:chunk:14"
+      ]
+    },
+    {
+      "id": "demo:edge:028",
+      "start": "demo:decision:pilot",
+      "type": "ABOUT",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:14"
+      ]
+    },
+    {
+      "id": "demo:edge:029",
+      "start": "demo:decision:direct",
+      "type": "USES",
+      "end": "demo:system:payment",
+      "source_ids": [
+        "demo:chunk:08"
+      ]
+    },
+    {
+      "id": "demo:edge:030",
+      "start": "demo:decision:gateway",
+      "type": "USES",
+      "end": "demo:system:gateway",
+      "source_ids": [
+        "demo:chunk:09"
+      ]
+    },
+    {
+      "id": "demo:edge:031",
+      "start": "demo:decision:pilot",
+      "type": "USES",
+      "end": "demo:system:payment",
+      "source_ids": [
+        "demo:chunk:14"
+      ]
+    },
+    {
+      "id": "demo:edge:032",
+      "start": "demo:decision:gateway",
+      "type": "SUPERSEDES",
+      "end": "demo:decision:direct",
+      "source_ids": [
+        "demo:chunk:09"
+      ],
+      "scope": "标准接入客户、试点接入客户",
+      "effective_at": "2026-09-07T12:15:00+08:00"
+    },
+    {
+      "id": "demo:edge:033",
+      "start": "demo:decision:pilot",
+      "type": "PARTIALLY_OVERRIDES",
+      "end": "demo:decision:gateway",
+      "source_ids": [
+        "demo:chunk:14"
+      ],
+      "scope": "试点接入客户",
+      "effective_at": "2026-09-14T10:00:00+08:00"
+    },
+    {
+      "id": "demo:edge:034",
+      "start": "demo:decision:direct",
+      "type": "APPLIES_TO",
+      "end": "demo:scope:standard",
+      "source_ids": [
+        "demo:chunk:08",
+        "demo:chunk:09"
+      ],
+      "valid_from": "2026-09-07T10:25:00+08:00",
+      "valid_to": "2026-09-07T12:15:00+08:00"
+    },
+    {
+      "id": "demo:edge:035",
+      "start": "demo:decision:gateway",
+      "type": "APPLIES_TO",
+      "end": "demo:scope:standard",
+      "source_ids": [
+        "demo:chunk:09",
+        "demo:chunk:14",
+        "demo:chunk:16"
+      ],
+      "valid_from": "2026-09-07T12:15:00+08:00",
+      "valid_to": ""
+    },
+    {
+      "id": "demo:edge:036",
+      "start": "demo:decision:direct",
+      "type": "APPLIES_TO",
+      "end": "demo:scope:pilot",
+      "source_ids": [
+        "demo:chunk:08",
+        "demo:chunk:09"
+      ],
+      "valid_from": "2026-09-07T10:25:00+08:00",
+      "valid_to": "2026-09-07T12:15:00+08:00"
+    },
+    {
+      "id": "demo:edge:037",
+      "start": "demo:decision:gateway",
+      "type": "APPLIES_TO",
+      "end": "demo:scope:pilot",
+      "source_ids": [
+        "demo:chunk:09",
+        "demo:chunk:14",
+        "demo:chunk:16"
+      ],
+      "valid_from": "2026-09-07T12:15:00+08:00",
+      "valid_to": "2026-09-14T10:00:00+08:00"
+    },
+    {
+      "id": "demo:edge:038",
+      "start": "demo:decision:pilot",
+      "type": "APPLIES_TO",
+      "end": "demo:scope:pilot",
+      "source_ids": [
+        "demo:chunk:14",
+        "demo:chunk:15"
+      ],
+      "valid_from": "2026-09-14T10:00:00+08:00",
+      "valid_to": "2026-09-21T00:00:00+08:00"
+    },
+    {
+      "id": "demo:edge:039",
+      "start": "demo:chunk:01",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:charter",
+      "source_ids": [
+        "demo:chunk:01"
+      ]
+    },
+    {
+      "id": "demo:edge:040",
+      "start": "demo:chunk:01",
+      "type": "MENTIONS",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:01"
+      ]
+    },
+    {
+      "id": "demo:edge:041",
+      "start": "demo:chunk:01",
+      "type": "MENTIONS",
+      "end": "demo:goal:reduce-missed-payment",
+      "source_ids": [
+        "demo:chunk:01"
+      ]
+    },
+    {
+      "id": "demo:edge:042",
+      "start": "demo:chunk:01",
+      "type": "MENTIONS",
+      "end": "demo:person:wang-lei",
+      "source_ids": [
+        "demo:chunk:01"
+      ]
+    },
+    {
+      "id": "demo:edge:043",
+      "start": "demo:chunk:02",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:payment-design",
+      "source_ids": [
+        "demo:chunk:02"
+      ]
+    },
+    {
+      "id": "demo:edge:044",
+      "start": "demo:chunk:02",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:02"
+      ]
+    },
+    {
+      "id": "demo:edge:045",
+      "start": "demo:chunk:02",
+      "type": "MENTIONS",
+      "end": "demo:interface:query",
+      "source_ids": [
+        "demo:chunk:02"
+      ]
+    },
+    {
+      "id": "demo:edge:046",
+      "start": "demo:chunk:02",
+      "type": "MENTIONS",
+      "end": "demo:goal:reduce-missed-payment",
+      "source_ids": [
+        "demo:chunk:02"
+      ]
+    },
+    {
+      "id": "demo:edge:047",
+      "start": "demo:chunk:03",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:query-contract",
+      "source_ids": [
+        "demo:chunk:03"
+      ]
+    },
+    {
+      "id": "demo:edge:048",
+      "start": "demo:chunk:03",
+      "type": "MENTIONS",
+      "end": "demo:interface:query",
+      "source_ids": [
+        "demo:chunk:03"
+      ]
+    },
+    {
+      "id": "demo:edge:049",
+      "start": "demo:chunk:03",
+      "type": "MENTIONS",
+      "end": "demo:person:chen-yu",
+      "source_ids": [
+        "demo:chunk:03"
+      ]
+    },
+    {
+      "id": "demo:edge:050",
+      "start": "demo:chunk:04",
+      "type": "EXCERPT_OF",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:04"
+      ]
+    },
+    {
+      "id": "demo:edge:051",
+      "start": "demo:chunk:04",
+      "type": "MENTIONS",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:04"
+      ]
+    },
+    {
+      "id": "demo:edge:052",
+      "start": "demo:chunk:05",
+      "type": "EXCERPT_OF",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:05"
+      ]
+    },
+    {
+      "id": "demo:edge:053",
+      "start": "demo:chunk:05",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:05"
+      ]
+    },
+    {
+      "id": "demo:edge:054",
+      "start": "demo:chunk:06",
+      "type": "EXCERPT_OF",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:06"
+      ]
+    },
+    {
+      "id": "demo:edge:055",
+      "start": "demo:chunk:06",
+      "type": "MENTIONS",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:06"
+      ]
+    },
+    {
+      "id": "demo:edge:056",
+      "start": "demo:chunk:07",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:responsibility",
+      "source_ids": [
+        "demo:chunk:07"
+      ]
+    },
+    {
+      "id": "demo:edge:057",
+      "start": "demo:chunk:07",
+      "type": "MENTIONS",
+      "end": "demo:person:wang-lei",
+      "source_ids": [
+        "demo:chunk:07"
+      ]
+    },
+    {
+      "id": "demo:edge:058",
+      "start": "demo:chunk:07",
+      "type": "MENTIONS",
+      "end": "demo:person:chen-yu",
+      "source_ids": [
+        "demo:chunk:07"
+      ]
+    },
+    {
+      "id": "demo:edge:059",
+      "start": "demo:chunk:07",
+      "type": "MENTIONS",
+      "end": "demo:person:li-ming",
+      "source_ids": [
+        "demo:chunk:07"
+      ]
+    },
+    {
+      "id": "demo:edge:060",
+      "start": "demo:chunk:08",
+      "type": "EXCERPT_OF",
+      "end": "demo:meeting:0907",
+      "source_ids": [
+        "demo:chunk:08"
+      ]
+    },
+    {
+      "id": "demo:edge:061",
+      "start": "demo:chunk:08",
+      "type": "MENTIONS",
+      "end": "demo:decision:direct",
+      "source_ids": [
+        "demo:chunk:08"
+      ]
+    },
+    {
+      "id": "demo:edge:062",
+      "start": "demo:chunk:09",
+      "type": "EXCERPT_OF",
+      "end": "demo:meeting:0907",
+      "source_ids": [
+        "demo:chunk:09"
+      ]
+    },
+    {
+      "id": "demo:edge:063",
+      "start": "demo:chunk:09",
+      "type": "MENTIONS",
+      "end": "demo:decision:gateway",
+      "source_ids": [
+        "demo:chunk:09"
+      ]
+    },
+    {
+      "id": "demo:edge:064",
+      "start": "demo:chunk:10",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:access-design",
+      "source_ids": [
+        "demo:chunk:10"
+      ]
+    },
+    {
+      "id": "demo:edge:065",
+      "start": "demo:chunk:10",
+      "type": "MENTIONS",
+      "end": "demo:decision:gateway",
+      "source_ids": [
+        "demo:chunk:10"
+      ]
+    },
+    {
+      "id": "demo:edge:066",
+      "start": "demo:chunk:10",
+      "type": "MENTIONS",
+      "end": "demo:system:gateway",
+      "source_ids": [
+        "demo:chunk:10"
+      ]
+    },
+    {
+      "id": "demo:edge:067",
+      "start": "demo:chunk:11",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:acceptance-plan",
+      "source_ids": [
+        "demo:chunk:11"
+      ]
+    },
+    {
+      "id": "demo:edge:068",
+      "start": "demo:chunk:11",
+      "type": "MENTIONS",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:11"
+      ]
+    },
+    {
+      "id": "demo:edge:069",
+      "start": "demo:chunk:11",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:11"
+      ]
+    },
+    {
+      "id": "demo:edge:070",
+      "start": "demo:chunk:11",
+      "type": "MENTIONS",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:11"
+      ]
+    },
+    {
+      "id": "demo:edge:071",
+      "start": "demo:chunk:12",
+      "type": "EXCERPT_OF",
+      "end": "demo:meeting:0910",
+      "source_ids": [
+        "demo:chunk:12"
+      ]
+    },
+    {
+      "id": "demo:edge:072",
+      "start": "demo:chunk:12",
+      "type": "MENTIONS",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:12"
+      ]
+    },
+    {
+      "id": "demo:edge:073",
+      "start": "demo:chunk:12",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:12"
+      ]
+    },
+    {
+      "id": "demo:edge:074",
+      "start": "demo:chunk:13",
+      "type": "EXCERPT_OF",
+      "end": "demo:meeting:0910",
+      "source_ids": [
+        "demo:chunk:13"
+      ]
+    },
+    {
+      "id": "demo:edge:075",
+      "start": "demo:chunk:13",
+      "type": "MENTIONS",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:13"
+      ]
+    },
+    {
+      "id": "demo:edge:076",
+      "start": "demo:chunk:14",
+      "type": "EXCERPT_OF",
+      "end": "demo:meeting:0914",
+      "source_ids": [
+        "demo:chunk:14"
+      ]
+    },
+    {
+      "id": "demo:edge:077",
+      "start": "demo:chunk:14",
+      "type": "MENTIONS",
+      "end": "demo:decision:pilot",
+      "source_ids": [
+        "demo:chunk:14"
+      ]
+    },
+    {
+      "id": "demo:edge:078",
+      "start": "demo:chunk:15",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:pilot-addendum",
+      "source_ids": [
+        "demo:chunk:15"
+      ]
+    },
+    {
+      "id": "demo:edge:079",
+      "start": "demo:chunk:15",
+      "type": "MENTIONS",
+      "end": "demo:decision:pilot",
+      "source_ids": [
+        "demo:chunk:15"
+      ]
+    },
+    {
+      "id": "demo:edge:080",
+      "start": "demo:chunk:15",
+      "type": "MENTIONS",
+      "end": "demo:scope:pilot",
+      "source_ids": [
+        "demo:chunk:15"
+      ]
+    },
+    {
+      "id": "demo:edge:081",
+      "start": "demo:chunk:16",
+      "type": "EXCERPT_OF",
+      "end": "demo:meeting:0914",
+      "source_ids": [
+        "demo:chunk:16"
+      ]
+    },
+    {
+      "id": "demo:edge:082",
+      "start": "demo:chunk:16",
+      "type": "MENTIONS",
+      "end": "demo:decision:gateway",
+      "source_ids": [
+        "demo:chunk:16"
+      ]
+    },
+    {
+      "id": "demo:edge:083",
+      "start": "demo:chunk:16",
+      "type": "MENTIONS",
+      "end": "demo:scope:standard",
+      "source_ids": [
+        "demo:chunk:16"
+      ]
+    },
+    {
+      "id": "demo:edge:084",
+      "start": "demo:chunk:17",
+      "type": "EXCERPT_OF",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:17"
+      ]
+    },
+    {
+      "id": "demo:edge:085",
+      "start": "demo:chunk:17",
+      "type": "MENTIONS",
+      "end": "demo:task:query-api",
+      "source_ids": [
+        "demo:chunk:17"
+      ]
+    },
+    {
+      "id": "demo:edge:086",
+      "start": "demo:chunk:17",
+      "type": "MENTIONS",
+      "end": "demo:person:chen-yu",
+      "source_ids": [
+        "demo:chunk:17"
+      ]
+    },
+    {
+      "id": "demo:edge:087",
+      "start": "demo:chunk:18",
+      "type": "EXCERPT_OF",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:088",
+      "start": "demo:chunk:18",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:089",
+      "start": "demo:chunk:18",
+      "type": "MENTIONS",
+      "end": "demo:person:li-ming",
+      "source_ids": [
+        "demo:chunk:18"
+      ]
+    },
+    {
+      "id": "demo:edge:090",
+      "start": "demo:chunk:19",
+      "type": "EXCERPT_OF",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:091",
+      "start": "demo:chunk:19",
+      "type": "MENTIONS",
+      "end": "demo:task:acceptance",
+      "source_ids": [
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:092",
+      "start": "demo:chunk:19",
+      "type": "MENTIONS",
+      "end": "demo:person:wang-lei",
+      "source_ids": [
+        "demo:chunk:19"
+      ]
+    },
+    {
+      "id": "demo:edge:093",
+      "start": "demo:chunk:20",
+      "type": "EXCERPT_OF",
+      "end": "demo:doc:lessons",
+      "source_ids": [
+        "demo:chunk:20"
+      ]
+    },
+    {
+      "id": "demo:edge:094",
+      "start": "demo:chunk:20",
+      "type": "MENTIONS",
+      "end": "demo:decision:direct",
+      "source_ids": [
+        "demo:chunk:20"
+      ]
+    },
+    {
+      "id": "demo:edge:095",
+      "start": "demo:chunk:20",
+      "type": "MENTIONS",
+      "end": "demo:decision:gateway",
+      "source_ids": [
+        "demo:chunk:20"
+      ]
+    },
+    {
+      "id": "demo:edge:096",
+      "start": "demo:chunk:20",
+      "type": "MENTIONS",
+      "end": "demo:decision:pilot",
+      "source_ids": [
+        "demo:chunk:20"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-21",
+      "start": "demo:chunk:21",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:capacity-report",
+      "source_ids": [
+        "demo:chunk:21"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-21",
+      "start": "demo:chunk:21",
+      "type": "MENTIONS",
+      "end": "demo:article:capacity-report",
+      "source_ids": [
+        "demo:chunk:21"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-22",
+      "start": "demo:chunk:22",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:launch-plan",
+      "source_ids": [
+        "demo:chunk:22"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-22",
+      "start": "demo:chunk:22",
+      "type": "MENTIONS",
+      "end": "demo:article:launch-plan",
+      "source_ids": [
+        "demo:chunk:22"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-23",
+      "start": "demo:chunk:23",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:cache-meeting",
+      "source_ids": [
+        "demo:chunk:23"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-23",
+      "start": "demo:chunk:23",
+      "type": "MENTIONS",
+      "end": "demo:article:cache-meeting",
+      "source_ids": [
+        "demo:chunk:23"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-24",
+      "start": "demo:chunk:24",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:handover-task",
+      "source_ids": [
+        "demo:chunk:24"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-24",
+      "start": "demo:chunk:24",
+      "type": "MENTIONS",
+      "end": "demo:article:handover-task",
+      "source_ids": [
+        "demo:chunk:24"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-25",
+      "start": "demo:chunk:25",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:payment-launch",
+      "source_ids": [
+        "demo:chunk:25"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-25",
+      "start": "demo:chunk:25",
+      "type": "MENTIONS",
+      "end": "demo:article:payment-launch",
+      "source_ids": [
+        "demo:chunk:25"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-26",
+      "start": "demo:chunk:26",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:staff-meeting",
+      "source_ids": [
+        "demo:chunk:26"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-26",
+      "start": "demo:chunk:26",
+      "type": "MENTIONS",
+      "end": "demo:article:staff-meeting",
+      "source_ids": [
+        "demo:chunk:26"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-27",
+      "start": "demo:chunk:27",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:retry-spec",
+      "source_ids": [
+        "demo:chunk:27"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-27",
+      "start": "demo:chunk:27",
+      "type": "MENTIONS",
+      "end": "demo:article:retry-spec",
+      "source_ids": [
+        "demo:chunk:27"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-28",
+      "start": "demo:chunk:28",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:retry-spec",
+      "source_ids": [
+        "demo:chunk:28"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-28",
+      "start": "demo:chunk:28",
+      "type": "MENTIONS",
+      "end": "demo:article:retry-spec",
+      "source_ids": [
+        "demo:chunk:28"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-29",
+      "start": "demo:chunk:29",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:warehouse-review",
+      "source_ids": [
+        "demo:chunk:29"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-29",
+      "start": "demo:chunk:29",
+      "type": "MENTIONS",
+      "end": "demo:article:warehouse-review",
+      "source_ids": [
+        "demo:chunk:29"
+      ]
+    },
+    {
+      "id": "demo:article-edge:excerpt-30",
+      "start": "demo:chunk:30",
+      "type": "EXCERPT_OF",
+      "end": "demo:article:crm-review",
+      "source_ids": [
+        "demo:chunk:30"
+      ]
+    },
+    {
+      "id": "demo:article-edge:mention-30",
+      "start": "demo:chunk:30",
+      "type": "MENTIONS",
+      "end": "demo:article:crm-review",
+      "source_ids": [
+        "demo:chunk:30"
+      ]
+    },
+    {
+      "id": "demo:article-edge:capacity-basis",
+      "start": "demo:article:launch-plan",
+      "type": "BASED_ON",
+      "end": "demo:article:capacity-report",
+      "source_ids": [
+        "demo:chunk:21",
+        "demo:chunk:22"
+      ]
+    },
+    {
+      "id": "demo:article-edge:cache-change",
+      "start": "demo:article:cache-meeting",
+      "type": "INVALIDATES",
+      "end": "demo:article:launch-plan",
+      "source_ids": [
+        "demo:chunk:23"
+      ]
+    },
+    {
+      "id": "demo:article-edge:launch-task",
+      "start": "demo:article:payment-launch",
+      "type": "DEPENDS_ON",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:25"
+      ]
+    },
+    {
+      "id": "demo:article-edge:launch-project",
+      "start": "demo:article:payment-launch",
+      "type": "BELONGS_TO",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:25"
+      ]
+    },
+    {
+      "id": "demo:article-edge:departure",
+      "start": "demo:person:li-ming",
+      "type": "LEAVES",
+      "end": "demo:project:payment",
+      "source_ids": [
+        "demo:chunk:26"
+      ],
+      "valid_from": "2026-09-17T10:00:00+08:00"
+    },
+    {
+      "id": "demo:article-edge:staff-task",
+      "start": "demo:article:staff-meeting",
+      "type": "ABOUT",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:26"
+      ]
+    },
+    {
+      "id": "demo:article-edge:handover-task",
+      "start": "demo:article:handover-task",
+      "type": "ABOUT",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:24"
+      ]
+    },
+    {
+      "id": "demo:article-edge:staff-person",
+      "start": "demo:chunk:26",
+      "type": "MENTIONS",
+      "end": "demo:person:li-ming",
+      "source_ids": [
+        "demo:chunk:26"
+      ]
+    },
+    {
+      "id": "demo:article-edge:task-mention",
+      "start": "demo:chunk:24",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:24"
+      ]
+    },
+    {
+      "id": "demo:article-edge:launch-mention",
+      "start": "demo:chunk:25",
+      "type": "MENTIONS",
+      "end": "demo:task:callback",
+      "source_ids": [
+        "demo:chunk:25"
+      ]
+    }
+  ]
+}

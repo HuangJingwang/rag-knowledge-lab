@@ -1,0 +1,182 @@
+{
+  "chunks": [
+    {
+      "content": "# 接口约定：查询结果与幂等规则\n\n支付结果查询接口由陈宇负责，按照支付流水号返回处理中、成功或失败。只有结果为成功时才推动订单进入已支付状态；处理中应按退避策略再次查询。重复查询和重复回调不得重复发货。支付回调改造依赖这一约定。",
+      "source_id": "demo:chunk:03",
+      "file_path": "sources/chunk-03.md",
+      "chunk_order_index": 0
+    },
+    {
+      "content": "# 验收规范：依赖两个任务完成\n\n《支付联调验收规范》要求支付结果查询接口和支付回调改造都具备可用测试版本，再执行回调丢失、重复回调、查询超时三个用例。接口返回状态的判断依据引用《接口约定：查询结果与幂等规则》。验收负责人王蕾需要同时核对任务交付和接入方案范围。",
+      "source_id": "demo:chunk:11",
+      "file_path": "sources/chunk-11.md",
+      "chunk_order_index": 0
+    },
+    {
+      "content": "# 最新任务：支付结果查询接口已交付\n\n截至 9 月 15 日 17:00，陈宇负责的支付结果查询接口已完成开发并交付测试环境，状态为已完成。支付状态映射问题已解决；支付回调改造可以开始主动查询补偿联调。该记录替代 9 月 7 日任务快照中的开发中状态和 9 月 10 日的延期进展。",
+      "source_id": "demo:chunk:17",
+      "file_path": "sources/chunk-17.md",
+      "chunk_order_index": 0
+    },
+    {
+      "content": "# 最新任务：支付回调改造正在联调\n\n截至 9 月 16 日 09:00，李明负责的支付回调改造处于联调中，预计 9 月 17 日完成。查询接口已在 9 月 15 日交付，当前剩余工作是验证查询超时后的补偿和重复回调去重。任务没有完成，不能仅凭依赖接口交付就判断整体已完成。",
+      "source_id": "demo:chunk:18",
+      "file_path": "sources/chunk-18.md",
+      "chunk_order_index": 0
+    },
+    {
+      "content": "# 最新任务：支付联调验收尚未开始\n\n截至 9 月 16 日 09:10，王蕾组织的支付联调验收状态为待开始，计划 9 月 18 日执行。支付结果查询接口已完成，但支付回调改造仍在联调，因此验收尚未满足全部前置条件。该状态是本演示截止时间的快照，不代表真实业务实时数据。",
+      "source_id": "demo:chunk:19",
+      "file_path": "sources/chunk-19.md",
+      "chunk_order_index": 0
+    }
+  ],
+  "entities": [
+    {
+      "entity_name": "陈宇",
+      "entity_type": "Person",
+      "description": "陈宇是支付结果查询接口开发任务的负责人。",
+      "source_id": "demo:chunk:17",
+      "file_path": "sources/chunk-17.md"
+    },
+    {
+      "entity_name": "支付结果查询接口开发",
+      "entity_type": "Task",
+      "description": "支付结果查询接口开发任务由陈宇负责，9 月 15 日已交付。",
+      "source_id": "demo:chunk:17",
+      "file_path": "sources/chunk-17.md"
+    },
+    {
+      "entity_name": "支付结果查询接口",
+      "entity_type": "Interface",
+      "description": "按照支付流水号返回处理中、成功或失败；回调改造用它主动查询支付结果。",
+      "source_id": "demo:chunk:03",
+      "file_path": "sources/chunk-03.md"
+    },
+    {
+      "entity_name": "李明",
+      "entity_type": "Person",
+      "description": "李明是支付回调改造任务的负责人。",
+      "source_id": "demo:chunk:18",
+      "file_path": "sources/chunk-18.md"
+    },
+    {
+      "entity_name": "支付回调改造",
+      "entity_type": "Task",
+      "description": "支付回调改造包含主动查询补偿和重复回调去重，截至 9 月 16 日处于联调中。",
+      "source_id": "demo:chunk:18",
+      "file_path": "sources/chunk-18.md"
+    },
+    {
+      "entity_name": "王蕾",
+      "entity_type": "Person",
+      "description": "王蕾负责组织支付联调验收。",
+      "source_id": "demo:chunk:19",
+      "file_path": "sources/chunk-19.md"
+    },
+    {
+      "entity_name": "支付联调验收",
+      "entity_type": "Task",
+      "description": "支付联调验收依赖查询接口和回调改造完成，截至 9 月 16 日待开始。",
+      "source_id": "demo:chunk:19",
+      "file_path": "sources/chunk-19.md"
+    },
+    {
+      "entity_name": "支付联调验收规范",
+      "entity_type": "Document",
+      "description": "支付联调验收规范描述回调丢失、重复回调、查询超时用例。",
+      "source_id": "demo:chunk:11",
+      "file_path": "sources/chunk-11.md"
+    },
+    {
+      "entity_name": "接口查询约定",
+      "entity_type": "Document",
+      "description": "接口查询约定说明查询状态的含义，以及重复查询和重复回调不得重复发货。",
+      "source_id": "demo:chunk:03",
+      "file_path": "sources/chunk-03.md"
+    }
+  ],
+  "relationships": [
+    {
+      "src_id": "陈宇",
+      "tgt_id": "支付结果查询接口开发",
+      "description": "陈宇负责支付结果查询接口开发，接口已在 9 月 15 日交付。",
+      "keywords": "负责人,任务分工",
+      "weight": 1.0,
+      "source_id": "demo:chunk:17",
+      "file_path": "sources/chunk-17.md"
+    },
+    {
+      "src_id": "支付结果查询接口开发",
+      "tgt_id": "支付结果查询接口",
+      "description": "支付结果查询接口开发任务交付支付结果查询接口，供回调补偿使用。",
+      "keywords": "接口交付,查询能力",
+      "weight": 1.0,
+      "source_id": "demo:chunk:17",
+      "file_path": "sources/chunk-17.md"
+    },
+    {
+      "src_id": "李明",
+      "tgt_id": "支付回调改造",
+      "description": "李明负责支付回调改造，截至 9 月 16 日仍在联调。",
+      "keywords": "负责人,任务分工",
+      "weight": 1.0,
+      "source_id": "demo:chunk:18",
+      "file_path": "sources/chunk-18.md"
+    },
+    {
+      "src_id": "支付回调改造",
+      "tgt_id": "支付结果查询接口",
+      "description": "支付回调改造依赖支付结果查询接口完成主动查询补偿联调。",
+      "keywords": "任务依赖,主动查询补偿",
+      "weight": 1.0,
+      "source_id": "demo:chunk:18",
+      "file_path": "sources/chunk-18.md"
+    },
+    {
+      "src_id": "支付回调改造",
+      "tgt_id": "支付结果查询接口开发",
+      "description": "支付回调改造的补偿联调需要支付结果查询接口开发任务先完成。",
+      "keywords": "任务依赖,前置交付",
+      "weight": 1.0,
+      "source_id": "demo:chunk:18",
+      "file_path": "sources/chunk-18.md"
+    },
+    {
+      "src_id": "王蕾",
+      "tgt_id": "支付联调验收",
+      "description": "王蕾负责组织支付联调验收，截至 9 月 16 日验收待开始。",
+      "keywords": "负责人,验收组织",
+      "weight": 1.0,
+      "source_id": "demo:chunk:19",
+      "file_path": "sources/chunk-19.md"
+    },
+    {
+      "src_id": "支付联调验收",
+      "tgt_id": "支付回调改造",
+      "description": "支付联调验收需要支付回调改造完成，后者仍在联调。",
+      "keywords": "任务依赖,验收前置条件",
+      "weight": 1.0,
+      "source_id": "demo:chunk:19",
+      "file_path": "sources/chunk-19.md"
+    },
+    {
+      "src_id": "支付联调验收",
+      "tgt_id": "支付结果查询接口开发",
+      "description": "支付联调验收需要支付结果查询接口交付；这一前置任务已完成。",
+      "keywords": "任务依赖,验收前置条件",
+      "weight": 1.0,
+      "source_id": "demo:chunk:19",
+      "file_path": "sources/chunk-19.md"
+    },
+    {
+      "src_id": "支付联调验收规范",
+      "tgt_id": "接口查询约定",
+      "description": "支付联调验收规范中的状态判断依据接口查询约定，引用查询状态与幂等规则。",
+      "keywords": "文档依据,状态判断",
+      "weight": 1.0,
+      "source_id": "demo:chunk:11",
+      "file_path": "sources/chunk-11.md"
+    }
+  ]
+}

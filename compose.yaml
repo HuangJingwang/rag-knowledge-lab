@@ -1,0 +1,126 @@
+name: rag-demo-bundle
+
+x-app: &app
+  image: rag-demo-web:20260917
+  platform: ${PLATFORM:-linux/amd64}
+  build: .
+  environment: &app-env
+    MILVUS_URI: http://milvus:19530
+    NEO4J_URI: bolt://neo4j:7687
+    NEO4J_USER: neo4j
+    NEO4J_PASSWORD: ${NEO4J_PASSWORD:?Copy .env.example to .env first}
+    NEO4J_DATABASE: neo4j
+    RAG_ARTICLE_PATH: /opt/demo/article/article.html
+    LIGHTRAG_PYTHON: /usr/local/bin/python
+    ATTU_PORT: ${ATTU_PORT:-8000}
+    NEO4J_HTTP_PORT: ${NEO4J_HTTP_PORT:-7474}
+    ADMIN_BIND: ${ADMIN_BIND:-127.0.0.1}
+
+services:
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.18
+    platform: ${PLATFORM:-linux/amd64}
+    restart: unless-stopped
+    environment:
+      ETCD_AUTO_COMPACTION_MODE: revision
+      ETCD_AUTO_COMPACTION_RETENTION: "1000"
+      ETCD_QUOTA_BACKEND_BYTES: "4294967296"
+      ETCD_SNAPSHOT_COUNT: "50000"
+    command: etcd -advertise-client-urls=http://etcd:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    volumes: [etcd-data:/etcd]
+    healthcheck:
+      test: [CMD, etcdctl, endpoint, health]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    platform: ${PLATFORM:-linux/amd64}
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: minio server /minio_data --console-address ":9001"
+    volumes: [minio-data:/minio_data]
+    healthcheck:
+      test: [CMD, curl, -f, http://localhost:9000/minio/health/live]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  milvus:
+    image: milvusdb/milvus:v2.6.4
+    platform: ${PLATFORM:-linux/amd64}
+    restart: unless-stopped
+    command: [milvus, run, standalone]
+    environment:
+      ETCD_ENDPOINTS: etcd:2379
+      MINIO_ADDRESS: minio:9000
+      MQ_TYPE: woodpecker
+    volumes: [milvus-data:/var/lib/milvus]
+    depends_on:
+      etcd: {condition: service_healthy}
+      minio: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, curl, -f, http://localhost:9091/healthz]
+      interval: 10s
+      start_period: 60s
+      timeout: 5s
+      retries: 24
+  neo4j:
+    image: neo4j:5.26-community
+    platform: ${PLATFORM:-linux/amd64}
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?Copy .env.example to .env first}
+      NEO4J_server_memory_heap_initial__size: 512m
+      NEO4J_server_memory_heap_max__size: 1G
+      NEO4J_server_memory_pagecache_size: 512m
+      NEO4J_server_bolt_advertised__address: ${PUBLIC_HOST:-localhost}:${NEO4J_BOLT_PORT:-7687}
+      NEO4J_server_http_advertised__address: ${PUBLIC_HOST:-localhost}:${NEO4J_HTTP_PORT:-7474}
+    volumes: [neo4j-data:/data, neo4j-logs:/logs]
+    ports:
+      - "${ADMIN_BIND:-127.0.0.1}:${NEO4J_HTTP_PORT:-7474}:7474"
+      - "${ADMIN_BIND:-127.0.0.1}:${NEO4J_BOLT_PORT:-7687}:7687"
+    healthcheck:
+      test: [CMD, wget, --spider, -q, http://localhost:7474]
+      interval: 5s
+      start_period: 30s
+      timeout: 5s
+      retries: 30
+  init:
+    <<: *app
+    restart: "no"
+    command: [python, /opt/demo/docker/initialize.py]
+    depends_on:
+      milvus: {condition: service_healthy}
+      neo4j: {condition: service_healthy}
+  web:
+    <<: *app
+    restart: unless-stopped
+    ports:
+      - "${WEB_BIND:-0.0.0.0}:${WEB_PORT:-8018}:8018"
+    depends_on:
+      init: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, /opt/demo/docker/healthcheck.py]
+      interval: 15s
+      start_period: 90s
+      timeout: 25s
+      retries: 12
+  attu:
+    image: zilliz/attu:v2.6.5
+    platform: ${PLATFORM:-linux/amd64}
+    restart: unless-stopped
+    environment:
+      MILVUS_URL: milvus:19530
+    ports:
+      - "${ADMIN_BIND:-127.0.0.1}:${ATTU_PORT:-8000}:3000"
+    depends_on:
+      milvus: {condition: service_healthy}
+
+volumes:
+  etcd-data:
+  minio-data:
+  milvus-data:
+  neo4j-data:
+  neo4j-logs:

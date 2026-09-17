@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d11" for="edge" attr.name="created_at" attr.type="long" />
+  <key id="d10" for="edge" attr.name="file_path" attr.type="string" />
+  <key id="d9" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d8" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d7" for="edge" attr.name="description" attr.type="string" />
+  <key id="d6" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d5" for="node" attr.name="created_at" attr.type="long" />
+  <key id="d4" for="node" attr.name="file_path" attr.type="string" />
+  <key id="d3" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d2" for="node" attr.name="description" attr.type="string" />
+  <key id="d1" for="node" attr.name="entity_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_id" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="陈宇">
+      <data key="d0">陈宇</data>
+      <data key="d1">Person</data>
+      <data key="d2">陈宇是支付结果查询接口开发任务的负责人。</data>
+      <data key="d3">chunk-89af6ea526853b5d542603c166004337</data>
+      <data key="d4">chunk-17.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="支付结果查询接口开发">
+      <data key="d0">支付结果查询接口开发</data>
+      <data key="d1">Task</data>
+      <data key="d2">支付结果查询接口开发任务由陈宇负责，9 月 15 日已交付。</data>
+      <data key="d3">chunk-89af6ea526853b5d542603c166004337</data>
+      <data key="d4">chunk-17.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="支付结果查询接口">
+      <data key="d0">支付结果查询接口</data>
+      <data key="d1">Interface</data>
+      <data key="d2">按照支付流水号返回处理中、成功或失败；回调改造用它主动查询支付结果。</data>
+      <data key="d3">chunk-dea59eb8420a967ce699d3de08b0c0cd</data>
+      <data key="d4">chunk-03.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="李明">
+      <data key="d0">李明</data>
+      <data key="d1">Person</data>
+      <data key="d2">李明是支付回调改造任务的负责人。</data>
+      <data key="d3">chunk-6bdcfd4ae28959019954678df0a4a519</data>
+      <data key="d4">chunk-18.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="支付回调改造">
+      <data key="d0">支付回调改造</data>
+      <data key="d1">Task</data>
+      <data key="d2">支付回调改造包含主动查询补偿和重复回调去重，截至 9 月 16 日处于联调中。</data>
+      <data key="d3">chunk-6bdcfd4ae28959019954678df0a4a519</data>
+      <data key="d4">chunk-18.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="王蕾">
+      <data key="d0">王蕾</data>
+      <data key="d1">Person</data>
+      <data key="d2">王蕾负责组织支付联调验收。</data>
+      <data key="d3">chunk-34c7ed20deaba292969335ba306765fd</data>
+      <data key="d4">chunk-19.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="支付联调验收">
+      <data key="d0">支付联调验收</data>
+      <data key="d1">Task</data>
+      <data key="d2">支付联调验收依赖查询接口和回调改造完成，截至 9 月 16 日待开始。</data>
+      <data key="d3">chunk-34c7ed20deaba292969335ba306765fd</data>
+      <data key="d4">chunk-19.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="支付联调验收规范">
+      <data key="d0">支付联调验收规范</data>
+      <data key="d1">Document</data>
+      <data key="d2">支付联调验收规范描述回调丢失、重复回调、查询超时用例。</data>
+      <data key="d3">chunk-0b6b67eb16ce0cf8d7aa7add51fa757a</data>
+      <data key="d4">chunk-11.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <node id="接口查询约定">
+      <data key="d0">接口查询约定</data>
+      <data key="d1">Document</data>
+      <data key="d2">接口查询约定说明查询状态的含义，以及重复查询和重复回调不得重复发货。</data>
+      <data key="d3">chunk-dea59eb8420a967ce699d3de08b0c0cd</data>
+      <data key="d4">chunk-03.md</data>
+      <data key="d5">1789553461</data>
+    </node>
+    <edge source="陈宇" target="支付结果查询接口开发">
+      <data key="d6">1.0</data>
+      <data key="d7">陈宇负责支付结果查询接口开发，接口已在 9 月 15 日交付。</data>
+      <data key="d8">负责人,任务分工</data>
+      <data key="d9">chunk-89af6ea526853b5d542603c166004337</data>
+      <data key="d10">chunk-17.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="支付结果查询接口开发" target="支付结果查询接口">
+      <data key="d6">1.0</data>
+      <data key="d7">支付结果查询接口开发任务交付支付结果查询接口，供回调补偿使用。</data>
+      <data key="d8">接口交付,查询能力</data>
+      <data key="d9">chunk-89af6ea526853b5d542603c166004337</data>
+      <data key="d10">chunk-17.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="支付结果查询接口开发" target="支付回调改造">
+      <data key="d6">1.0</data>
+      <data key="d7">支付回调改造的补偿联调需要支付结果查询接口开发任务先完成。</data>
+      <data key="d8">任务依赖,前置交付</data>
+      <data key="d9">chunk-6bdcfd4ae28959019954678df0a4a519</data>
+      <data key="d10">chunk-18.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="支付结果查询接口开发" target="支付联调验收">
+      <data key="d6">1.0</data>
+      <data key="d7">支付联调验收需要支付结果查询接口交付；这一前置任务已完成。</data>
+      <data key="d8">任务依赖,验收前置条件</data>
+      <data key="d9">chunk-34c7ed20deaba292969335ba306765fd</data>
+      <data key="d10">chunk-19.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="支付结果查询接口" target="支付回调改造">
+      <data key="d6">1.0</data>
+      <data key="d7">支付回调改造依赖支付结果查询接口完成主动查询补偿联调。</data>
+      <data key="d8">任务依赖,主动查询补偿</data>
+      <data key="d9">chunk-6bdcfd4ae28959019954678df0a4a519</data>
+      <data key="d10">chunk-18.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="李明" target="支付回调改造">
+      <data key="d6">1.0</data>
+      <data key="d7">李明负责支付回调改造，截至 9 月 16 日仍在联调。</data>
+      <data key="d8">负责人,任务分工</data>
+      <data key="d9">chunk-6bdcfd4ae28959019954678df0a4a519</data>
+      <data key="d10">chunk-18.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="支付回调改造" target="支付联调验收">
+      <data key="d6">1.0</data>
+      <data key="d7">支付联调验收需要支付回调改造完成，后者仍在联调。</data>
+      <data key="d8">任务依赖,验收前置条件</data>
+      <data key="d9">chunk-34c7ed20deaba292969335ba306765fd</data>
+      <data key="d10">chunk-19.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="王蕾" target="支付联调验收">
+      <data key="d6">1.0</data>
+      <data key="d7">王蕾负责组织支付联调验收，截至 9 月 16 日验收待开始。</data>
+      <data key="d8">负责人,验收组织</data>
+      <data key="d9">chunk-34c7ed20deaba292969335ba306765fd</data>
+      <data key="d10">chunk-19.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+    <edge source="支付联调验收规范" target="接口查询约定">
+      <data key="d6">1.0</data>
+      <data key="d7">支付联调验收规范中的状态判断依据接口查询约定，引用查询状态与幂等规则。</data>
+      <data key="d8">文档依据,状态判断</data>
+      <data key="d9">chunk-0b6b67eb16ce0cf8d7aa7add51fa757a</data>
+      <data key="d10">chunk-11.md</data>
+      <data key="d11">1789553461</data>
+    </edge>
+  </graph>
+</graphml>

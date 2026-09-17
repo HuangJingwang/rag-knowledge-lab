@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>RAG 数据实验室</title>
+  <link rel="stylesheet" href="/static/workspace.css">
+  <link rel="stylesheet" href="/static/graph-stage.css">
+  <script src="/static/graph-stage.js" defer></script>
+  <script src="/static/workspace.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1><a class="brand" href="/">← 原文工作区</a></h1>
+      <div class="workspace-nav" role="tablist" aria-label="演示视图" aria-orientation="horizontal">
+        <button class="nav-tab" id="search-tab" type="button" role="tab" aria-controls="search-view" aria-selected="true" tabindex="0">检索对比</button>
+        <button class="nav-tab" id="temporal-tab" type="button" role="tab" aria-controls="temporal-view" aria-selected="false" tabindex="-1">时序决策</button>
+      </div>
+      <div class="topbar-actions">
+        <details class="system-status menu-details" id="system-status">
+          <summary id="connection-badge" data-state="loading"><span class="status-dot" aria-hidden="true"></span><span id="connection-label">正在连接</span></summary>
+          <div class="menu-panel status-panel">
+            <h2>本地服务状态</h2>
+            <dl class="system-metrics"><div><dt>Milvus 文本</dt><dd id="milvus-rows">…</dd></div><div><dt>图节点</dt><dd id="graph-nodes">…</dd></div><div><dt>图关系</dt><dd id="graph-relationships">…</dd></div><div class="model-metric"><dt>Embedding 模型</dt><dd id="embedding-info">读取中</dd></div><div><dt>向量维度</dt><dd id="embedding-dimensions">…</dd></div></dl>
+            <div class="status-line" id="status-line" role="status"><span id="status-message">正在读取数据库状态…</span><button class="text-button" id="status-retry" type="button" hidden>重新连接</button></div>
+          </div>
+        </details>
+        <details class="tools-menu menu-details"><summary>工具</summary><div class="menu-panel"><nav class="tools" aria-label="数据与文章入口"><a href="/examples">文章案例</a><a href="/entities">LightRAG 实体与关系</a><a href="/article/" target="_blank" rel="noopener noreferrer">技术文章 ↗</a>{% if local_database_tools %}<a href="{{ attu_url }}" target="_blank" rel="noopener noreferrer">打开 Attu ↗</a><a href="{{ neo4j_browser_url }}" target="_blank" rel="noopener noreferrer">打开 Neo4j ↗</a>{% endif %}</nav>{% if local_database_tools %}<details class="connection-help"><summary>连接帮助</summary><p>Attu：<code>milvus:19530</code>，无需账号密码。</p><p>Neo4j 账号 <code>neo4j</code>，密码见本地 <code>.env</code>。</p></details>{% endif %}</div></details>
+        <button class="projection-button" id="projection-toggle" type="button" aria-pressed="false">投屏模式</button>
+      </div>
+    </div>
+  </header>
+  <main class="page">
+    <section class="view" id="search-view" role="tabpanel" aria-labelledby="search-tab" tabindex="0">
+      <div class="query-panel">
+        <h2 class="sr-only" id="search-heading">检索问题</h2>
+        <form id="search-form">
+          <label class="sr-only" for="query">输入一个关于会议与项目的问题</label>
+          <div class="search-row"><input class="search-input" id="query" name="query" type="text" value="支付结果查询接口延期，会影响哪些任务？" placeholder="输入一个关于会议与项目的问题" maxlength="500" required autocomplete="off"><button class="primary-button" id="search-button" type="submit">同时检索</button></div>
+          <div class="examples"><span>试一试</span><button class="example" type="button" data-query="支付结果查询接口延期，会影响哪些任务？" aria-pressed="true">依赖追踪</button><button class="example" type="button" data-query="为什么支付接入方案改成了统一支付网关？" aria-pressed="false">决策溯源</button><button class="example" type="button" data-query="谁负责支付回调改造？" aria-pressed="false">负责人</button><span class="scenario-hint" id="scenario-hint">看任务怎么连</span></div>
+        </form>
+      </div>
+      <div class="query-state">
+        <div class="query-message"><p class="run-note" id="search-message" role="status" aria-live="polite">正在准备首次检索…</p><button class="text-button" id="search-retry" type="button" hidden>重新检索</button></div>
+        <div class="run-metrics" id="result-toolbar" hidden><span><strong id="result-texts">0</strong> 段文本</span><span><strong id="result-relations">0</strong> 条关系</span><span><strong id="result-time">0</strong> ms</span></div>
+      </div>
+      <div class="comparison" id="comparison" aria-busy="false">
+        <section class="evidence-column" aria-labelledby="milvus-heading">
+          <div class="column-heading"><div><h2 id="milvus-heading">原文证据</h2><p>Milvus · 语义召回</p></div><span class="result-count" id="milvus-count">等待检索</span></div>
+          <div class="results evidence-results" id="milvus-results"><div class="empty-state"><strong>等待原文证据</strong><p>这里展示数据库召回的完整原文。</p></div></div>
+          <p class="highlight-note" id="highlight-note" hidden><mark>标记文字</mark>与本次返回的实体名称一致，未改写原文。</p>
+        </section>
+        <section class="graph-column" aria-labelledby="graph-heading">
+          <div class="column-heading"><div><h2 id="graph-heading">关联路径</h2><p>Neo4j · 从命中文本沿图查询</p></div><span class="result-count" id="graph-count">等待检索</span></div>
+          <div id="graph-stage" class="graph-stage-host" aria-label="本次查询返回的实体关系图"><div class="empty-state"><strong>等待关系证据</strong><p>图中只使用本次实际返回的实体与关系。</p></div></div>
+          <p class="graph-context-note">关系展示不代表当前状态，请结合原文时间核对。</p>
+          <details class="graph-detail-panel" id="graph-details"><summary>查看图检索命中与全部关系</summary><div class="results graph-results" id="graph-results"></div></details>
+        </section>
+      </div>
+      <details class="technical retrieval-notes"><summary>检索方式与原始参数</summary><p id="result-query">尚未完成检索。</p><p>Milvus 执行文本向量召回；Neo4j 使用官方 GraphRAG 的 <code>VectorCypherRetriever</code>，先召回文本，再按允许的关系类型在两跳内扩展。每条路径最多召回 3 条文本。</p><p>原始分数保留四位小数，可在每条命中的「记录与检索参数」中查看。两库分数不作横向比较，也不表示事实正确率。</p><p>统计仅针对本次返回数据：文本按「来源 ID + 标题 + 原文」去重，关系按「起点 + 类型 + 终点」去重。原始命中和关系全部保留，来源 ID 可展开核对。</p></details>
+    </section>
+
+    <section class="view" id="temporal-view" role="tabpanel" aria-labelledby="temporal-tab" tabindex="0" hidden>
+      <div class="temporal-panel">
+        <h2 id="temporal-heading">这个时点，哪项决策有效？</h2>
+        <form class="temporal-form" id="temporal-form">
+          <div class="field"><label for="at">适用时间 · 北京时间</label><select id="at" name="at"><option value="2026-09-07T11:00:00+08:00">2026 年 9 月 7 日 · 11:00</option><option value="2026-09-07T13:00:00+08:00">2026 年 9 月 7 日 · 13:00</option><option value="2026-09-14T12:00:00+08:00">2026 年 9 月 14 日 · 12:00</option><option value="2026-09-22T12:00:00+08:00">2026 年 9 月 22 日 · 12:00</option></select></div>
+          <div class="field"><label for="scope">适用范围</label><select id="scope" name="scope"><option value="试点接入客户">试点接入客户</option><option value="标准接入客户">标准接入客户</option></select></div>
+          <button class="primary-button" id="temporal-button" type="submit">查询有效决策</button>
+        </form>
+        <div class="time-steps" aria-label="快捷选择查询时点"><button class="time-step" type="button" data-at="2026-09-07T11:00:00+08:00" aria-pressed="true">第一小时 · 9/7 11:00</button><button class="time-step" type="button" data-at="2026-09-07T13:00:00+08:00" aria-pressed="false">第三小时 · 9/7 13:00</button><button class="time-step" type="button" data-at="2026-09-14T12:00:00+08:00" aria-pressed="false">下一周 · 9/14</button><button class="time-step" type="button" data-at="2026-09-22T12:00:00+08:00" aria-pressed="false">试点到期后 · 9/22</button></div>
+      </div>
+      <div class="query-state"><p class="run-note" id="temporal-message" role="status" aria-live="polite">选择查询时点和范围。</p></div>
+      <div class="temporal-results" id="temporal-results" aria-busy="false"></div>
+      <p class="temporal-note">按适用时间与客户范围查询，不能用相似度判断有效结论。</p>
+    </section>
+    <footer class="page-footer"><span>虚构语料 · 预先整理的图关系 · 本地真实 Embedding 与检索</span><span>历史与当前记录并存 · 召回证据需核对 · 不生成 LLM 答案</span></footer>
+  </main>
+</body>
+</html>

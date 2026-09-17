@@ -1,0 +1,51 @@
+.rg-root { --rg-ink: #203b66; --rg-blue: #2458d3; --rg-line: #dce5f2; width: 100%; min-width: 0; max-width: 100%; color: var(--rg-ink); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+.rg-root *, .rg-root *::before, .rg-root *::after { box-sizing: border-box; }
+.rg-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; padding: 12px 16px 0; }
+.rg-heading-title { font-size: 17px; font-weight: 650; }
+.rg-count { margin-left: auto; color: #60718c; font-size: 13px; font-variant-numeric: tabular-nums; }
+.rg-reset { border: 0; background: transparent; padding: 1px 0; color: var(--rg-blue); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.rg-reset[hidden] { display: none; }
+.rg-guide { margin: 5px 16px 7px; color: #63748e; font-size: 13px; }
+.rg-viewport { width: 100%; max-width: 100%; min-width: 0; max-height: 340px; overflow: auto; overscroll-behavior-inline: contain; scrollbar-color: #b4c6e4 #f1f5fb; scrollbar-width: thin; background: #fcfdff; border-top: 1px solid #edf1f7; border-bottom: 1px solid #edf1f7; }
+.rg-diagram { display: block; width: var(--rg-diagram-width); min-width: 100%; height: var(--rg-diagram-height); max-width: none; overflow: visible; }
+.rg-arrow { fill: #527cbc; }
+.rg-edge { cursor: pointer; outline: none; transition: opacity .12s; }
+.rg-edge-hit { fill: none; stroke: transparent; stroke-width: 22; pointer-events: stroke; }
+.rg-edge-line { fill: none; stroke: #527cbc; stroke-width: 2; pointer-events: none; }
+.rg-edge-label-bg { fill: #fcfdff; stroke: transparent; }
+.rg-edge-label { fill: #365e9c; font-size: 16px; font-weight: 600; }
+.rg-edge:hover .rg-edge-line, .rg-edge:focus-visible .rg-edge-line, .rg-edge.rg-is-selected .rg-edge-line { stroke: var(--rg-blue); stroke-width: 3; }
+.rg-edge:hover .rg-edge-label-bg, .rg-edge:focus-visible .rg-edge-label-bg, .rg-edge.rg-is-selected .rg-edge-label-bg { fill: #edf3ff; stroke: #adc5ef; }
+.rg-edge:focus-visible .rg-edge-label-bg { stroke: var(--rg-blue); stroke-width: 2; }
+.rg-edge.rg-is-muted { opacity: .28; }
+.rg-node { cursor: pointer; outline: none; }
+.rg-node-box { fill: white; stroke: #c1d0e5; stroke-width: 1.5; }
+.rg-node-label { fill: #244266; font-size: 16px; font-weight: 550; pointer-events: none; }
+.rg-node-match .rg-node-box { fill: #edf3ff; stroke: #7da4e8; stroke-width: 2; }
+.rg-node-match .rg-node-label { fill: #204ea4; font-weight: 700; }
+.rg-node:hover .rg-node-box, .rg-node:focus-visible .rg-node-box, .rg-node.rg-is-focused .rg-node-box { stroke: var(--rg-blue); stroke-width: 3; }
+.rg-node.rg-is-focused .rg-node-box { fill: #e6eeff; }
+.rg-scroll-hint { margin: 3px 16px 0; color: #748199; font-size: 11px; }
+.rg-detail { padding: 9px 16px 10px; min-width: 0; border-bottom: 1px solid var(--rg-line); }
+.rg-detail-path { margin: 0 0 5px; font-size: 16px; font-weight: 600; line-height: 1.55; overflow-wrap: anywhere; }
+.rg-sources { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.rg-source-caption, .rg-source-missing { color: #667792; font-size: 12px; }
+.rg-source-link { color: #2458b7; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+.rg-source-link:hover { color: #153c86; }
+.rg-all { margin: 0; }
+.rg-all-summary { cursor: pointer; padding: 9px 16px; color: #426395; font-size: 13px; }
+.rg-selection-note { margin: 0; padding: 0 16px 9px; color: #667792; font-size: 12px; }
+.rg-all-list { margin: 0; padding: 0 16px 12px; list-style: none; max-height: 360px; overflow-y: auto; overscroll-behavior: contain; }
+.rg-all-item { padding: 10px 0; border-top: 1px solid #edf1f7; }
+.rg-all-relation { display: block; width: 100%; border: 0; border-radius: 4px; padding: 2px 4px; background: transparent; color: #345479; font: inherit; font-size: 15px; line-height: 1.7; text-align: left; overflow-wrap: anywhere; cursor: pointer; }
+.rg-all-relation:hover, .rg-all-relation[aria-pressed="true"] { color: #1d4cab; background: #edf3ff; }
+.rg-all-sources { display: flex; flex-wrap: wrap; gap: 4px 10px; padding: 3px 4px 0; }
+.rg-empty { margin: 8px 16px 16px; padding: 28px 18px; background: #f6f8fc; border: 1px dashed #cdd8e8; border-radius: 8px; }
+.rg-empty strong { font-size: 16px; font-weight: 600; }
+.rg-empty p { margin: 7px 0 0; color: #667792; font-size: 14px; }
+.rg-root button:focus-visible, .rg-root a:focus-visible, .rg-root summary:focus-visible, .rg-viewport:focus-visible { outline: 3px solid #8aaaf5; outline-offset: 2px; }
+body.presentation-mode .rg-node-label, body.presentation-mode .rg-edge-label, body.is-presenting .rg-node-label, body.is-presenting .rg-edge-label { font-size: 18px; }
+body.presentation-mode .rg-detail-path, body.is-presenting .rg-detail-path { font-size: 18px; }
+body.presentation-mode .rg-guide, body.presentation-mode .rg-count, body.presentation-mode .rg-source-link, body.presentation-mode .rg-all-summary, body.is-presenting .rg-guide, body.is-presenting .rg-count, body.is-presenting .rg-source-link, body.is-presenting .rg-all-summary { font-size: 15px; }
+@media (max-width: 520px) { .rg-heading, .rg-detail { padding-left: 12px; padding-right: 12px; } .rg-guide, .rg-scroll-hint { margin-left: 12px; margin-right: 12px; } .rg-guide { font-size: 12px; } .rg-count { font-size: 12px; } }
+@media (prefers-reduced-motion: reduce) { .rg-edge { transition: none; } }

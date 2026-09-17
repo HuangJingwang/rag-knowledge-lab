@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>LightRAG 的实体和关系长什么样</title>
+  <style>
+    :root { color-scheme: light; --blue: #174ec6; --blue-dark: #123c98; --ink: #162743; --muted: #52627a; --line: #d9e2ef; --wash: #f3f7ff; --radius: 10px; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 16px/1.7 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    button { font: inherit; cursor: pointer; }
+    button, a, summary { -webkit-tap-highlight-color: transparent; }
+    button:disabled { cursor: wait; opacity: .65; }
+    button:focus-visible, a:focus-visible, summary:focus-visible, [tabindex="-1"]:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+    a { color: var(--blue); text-underline-offset: 4px; }
+    a:hover { color: var(--blue-dark); }
+    h1, h2, h3, p { margin: 0; }
+    code, pre { font: .88em/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    code { overflow-wrap: anywhere; }
+    .page { max-width: 1480px; padding: 28px 48px 40px; margin: auto; }
+    .topnav { display: flex; gap: 20px; align-items: center; justify-content: space-between; margin-bottom: 23px; font-size: 14px; }
+    .topnav a { text-decoration: none; }
+    .text-button { border: 0; background: transparent; color: var(--blue); padding: 3px 0; text-decoration: underline; text-underline-offset: 4px; }
+    h1 { font-size: clamp(28px, 3vw, 40px); line-height: 1.3; color: var(--blue); letter-spacing: -.03em; }
+    .intro { color: var(--muted); margin-top: 10px; font-size: 18px; }
+    .notice { margin-top: 21px; background: var(--wash); border-left: 3px solid var(--blue); padding: 13px 18px; color: var(--blue-dark); font-weight: 600; }
+    .status { margin-top: 14px; font-size: 14px; color: var(--muted); min-height: 25px; }
+    .status.error { color: #9c2635; }
+    .facts { display: flex; flex-wrap: wrap; gap: 8px 30px; padding: 16px 0 20px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    .facts strong { font-weight: 650; color: var(--blue); }
+    section { margin-top: 30px; }
+    h2 { font-size: 23px; line-height: 1.4; font-weight: 650; }
+    .section-note { color: var(--muted); margin-top: 5px; font-size: 15px; }
+    .source-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-top: 15px; }
+    .source-card { background: #fff; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius); padding: 13px 15px; text-align: left; min-width: 0; }
+    .source-card:hover, .item-button:hover { background: var(--wash); }
+    .source-card[aria-pressed="true"] { border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); background: var(--wash); }
+    .source-card strong { display: block; color: var(--blue); overflow-wrap: anywhere; font-size: 14px; }
+    .source-card span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 5px; font-size: 14px; }
+    .source-view { background: var(--wash); padding: 20px 24px; margin-top: 12px; border-radius: var(--radius); scroll-margin-top: 20px; }
+    .source-view h3 { font-size: 17px; color: var(--blue-dark); overflow-wrap: anywhere; }
+    .source-content { margin-top: 10px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.85; }
+    .file-path { margin-top: 10px; font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+    .inspectors { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+    .inspector { min-width: 0; }
+    .inspector-title { display: flex; align-items: baseline; gap: 12px; }
+    .count { font-size: 14px; color: var(--muted); }
+    .panel { border: 1px solid var(--line); border-radius: var(--radius); margin-top: 16px; overflow: hidden; }
+    .item-list { max-height: 230px; overflow-y: auto; overscroll-behavior: contain; border-bottom: 1px solid var(--line); }
+    .item-button { display: flex; gap: 15px; justify-content: space-between; width: 100%; border: 0; border-radius: 0; background: #fff; color: var(--ink); text-align: left; padding: 11px 18px; font-size: 15px; line-height: 1.65; overflow-wrap: anywhere; }
+    .item-button + .item-button { border-top: 1px solid #edf1f7; }
+    .item-button[aria-pressed="true"] { color: var(--blue-dark); background: var(--wash); box-shadow: inset 3px 0 0 var(--blue); font-weight: 600; }
+    .item-button:focus-visible { outline-offset: -4px; }
+    .item-button small { color: var(--muted); font-size: 12px; font-weight: 400; white-space: nowrap; }
+    .detail { padding: 22px; min-height: 250px; overflow-wrap: anywhere; }
+    .detail h3 { color: var(--blue-dark); font-size: 22px; line-height: 1.5; }
+    .detail dl { margin: 18px 0 0; display: grid; gap: 13px; }
+    .field dt { color: var(--muted); font-size: 12px; }
+    .field dd { margin: 3px 0 0; font-size: 15px; white-space: pre-wrap; }
+    .source-links { display: flex; flex-wrap: wrap; gap: 5px 12px; }
+    .source-links a { font: 13px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+    .unavailable { font-size: 13px; color: var(--muted); }
+    .vector { background: var(--wash); border-radius: 6px; padding: 12px 14px; margin-top: 18px; }
+    .vector-title { color: var(--blue-dark); font-size: 14px; font-weight: 600; }
+    .vector-id { margin-top: 4px; font-size: 12px; color: var(--muted); }
+    .vector-values { margin-top: 8px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12px; }
+    details { margin-top: 19px; border-top: 1px solid var(--line); padding-top: 14px; }
+    summary { cursor: pointer; color: var(--blue); font-size: 14px; }
+    pre { margin: 12px 0 0; padding: 14px; background: #f5f7fa; border-radius: 6px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 430px; overflow: auto; font-size: 12px; tab-size: 2; }
+    .empty { color: var(--muted); padding: 17px 0; font-size: 14px; }
+    .item-list .empty { padding: 16px 18px; }
+    .comparison-note { border-top: 1px solid var(--line); padding-top: 24px; margin-top: 36px; }
+    .comparison-note p { margin-top: 10px; color: var(--muted); max-width: 1100px; font-size: 15px; }
+    .comparison-note a { white-space: nowrap; }
+    footer { margin-top: 28px; color: var(--muted); font-size: 13px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 1023px) { .page { padding: 24px 28px; } .inspectors { gap: 16px; } .detail { padding: 18px; } }
+    @media (max-width: 767px) { .page { padding: 20px 18px 32px; } .inspectors { grid-template-columns: minmax(0, 1fr); gap: 30px; } .source-cards { grid-template-columns: minmax(0, 1fr); } .source-view { padding: 17px; } .facts { gap: 8px 20px; } .intro { font-size: 16px; } .item-button small { white-space: normal; } }
+  </style>
+</head>
+<body>
+  <main class="page" id="page" aria-busy="true">
+    <nav class="topnav" aria-label="页面导航"><a href="/">返回 RAG 数据实验室</a><button class="text-button" id="reload" type="button">重新读取存储</button></nav>
+    <header>
+      <h1>LightRAG 的实体和关系长什么样</h1>
+      <p class="intro">把已整理的事实输入官方接口，再查看框架实际落盘的原文、实体、关系与向量。</p>
+      <p class="notice">官方 LightRAG 自定义知识图谱导入；本次未调用 LLM 自动抽取</p>
+      <p class="status" id="status" role="status" aria-live="polite">正在读取本地 LightRAG 存储…</p>
+      <div class="facts"><span>框架版本 <strong id="version">读取中</strong></span><span>导入方法 <strong><code id="method">ainsert_custom_kg</code></strong></span><span>原文 <strong id="sources-total">读取中</strong></span><span>实体 <strong id="entities-total">读取中</strong></span><span>关系 <strong id="relations-total">读取中</strong></span></div>
+    </header>
+
+    <section aria-labelledby="sources-heading">
+      <h2 id="sources-heading">从原文开始</h2>
+      <p class="section-note">点击原文卡查看完整内容。实体和关系里的来源 ID，也可以跳回这里。</p>
+      <div class="source-cards" id="source-cards"><p class="empty">等待读取原文…</p></div>
+      <article class="source-view" id="source-view" tabindex="-1" aria-label="选中的完整原文" hidden></article>
+    </section>
+
+    <section class="inspectors" aria-label="实体与关系存储查看器">
+      <article class="inspector" aria-labelledby="entities-heading">
+        <div class="inspector-title"><h2 id="entities-heading">实体</h2><span class="count" id="entities-count">等待读取</span></div>
+        <p class="section-note">选中一个实体，查看描述、证据来源和嵌入向量。</p>
+        <div class="panel"><div class="item-list" id="entity-list" aria-label="选择实体"><p class="empty">正在读取实体…</p></div><div class="detail" id="entity-detail" aria-live="polite"><p class="empty">实体属性会显示在这里。</p></div></div>
+      </article>
+      <article class="inspector" aria-labelledby="relations-heading">
+        <div class="inspector-title"><h2 id="relations-heading">关系</h2><span class="count" id="relations-count">等待读取</span></div>
+        <p class="section-note">此示例为无向图。两个端点之间显示关联，不表示因果方向。</p>
+        <div class="panel"><div class="item-list" id="relation-list" aria-label="选择关系"><p class="empty">正在读取关系…</p></div><div class="detail" id="relation-detail" aria-live="polite"><p class="empty">关系属性会显示在这里。</p></div></div>
+      </article>
+    </section>
+
+    <section class="comparison-note" aria-labelledby="weknora-heading">
+      <h2 id="weknora-heading">与 WeKnora 的结构对照</h2>
+      <p>WeKnora 当前生产路径的节点包含 <code>name / attributes / chunks</code>，关系包含 <code>node1 / node2 / type</code>。可查看官方<a href="https://github.com/Tencent/WeKnora/blob/main/internal/types/extract_graph.go" target="_blank" rel="noopener noreferrer">数据结构定义</a>。</p>
+      <p>其写入逻辑在文档范围内按 <code>name + kg</code> 合并节点，<code>kg</code> 对应文档 ID。从这个合并键可见，同名实体跨文档不会自动统一。可查看官方 <a href="https://github.com/Tencent/WeKnora/blob/main/internal/application/repository/retriever/neo4j/repository.go" target="_blank" rel="noopener noreferrer">Neo4j 存储实现</a>。</p>
+    </section>
+    <footer>示例事实为虚构；字段和数值来自本地框架存储。本页只读展示，不触发自动抽取。</footer>
+  </main>
+  <script>
+    'use strict';
+    const byId = (id) => document.getElementById(id);
+    const list = (value) => Array.isArray(value) ? value : [];
+    const sourceMap = new Map();
+    let snapshot = { entities: [], relations: [], sources: [] };
+
+    function node(tag, className, value) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      if (value !== undefined && value !== null) element.textContent = String(value);
+      return element;
+    }
+    function textValue(value, fallback = '未返回') {
+      if (value === undefined || value === null || value === '') return fallback;
+      return Array.isArray(value) ? value.join('、') : String(value);
+    }
+    function setStatus(text, error = false) {
+      byId('status').textContent = text;
+      byId('status').classList.toggle('error', error);
+    }
+    function field(label, value) {
+      const row = node('div', 'field');
+      row.append(node('dt', '', label), node('dd', '', textValue(value)));
+      return row;
+    }
+    function sourceField(ids) {
+      const row = node('div', 'field');
+      row.append(node('dt', '', '来源 ID · 点击查看原文'));
+      const links = node('dd', 'source-links');
+      if (!list(ids).length) links.append(node('span', 'unavailable', '未返回来源 ID'));
+      list(ids).forEach((id) => {
+        const key = String(id);
+        if (sourceMap.has(key)) {
+          const link = node('a', '', key);
+          link.href = '#source-view';
+          link.addEventListener('click', (event) => { event.preventDefault(); selectSource(sourceMap.get(key), true); });
+          links.append(link);
+        } else links.append(node('span', 'unavailable', key + '（未返回对应原文）'));
+      });
+      row.append(links);
+      return row;
+    }
+    function rawDetails(raw) {
+      const details = node('details');
+      details.append(node('summary', '', '展开实际存储属性 · raw JSON'), node('pre', '', raw === undefined ? '接口未返回 raw 属性。' : JSON.stringify(raw, null, 2)));
+      return details;
+    }
+    function vectorDetails(vector) {
+      const section = node('div', 'vector');
+      if (!vector || typeof vector !== 'object') { section.append(node('p', 'vector-title', '本条未返回向量数据')); return section; }
+      const values = list(vector.head).slice(0, 8);
+      section.append(node('p', 'vector-title', '嵌入向量 · ' + textValue(vector.dimensions) + ' 维'), node('p', 'vector-id', '向量 ID：' + textValue(vector.id)), node('p', 'vector-id', values.length ? '前 ' + values.length + ' 维（截取实际数值）' : '接口未返回向量预览'));
+      if (values.length) section.append(node('pre', 'vector-values', JSON.stringify(values)));
+      return section;
+    }
+    function selectSource(index, jump = false) {
+      const source = snapshot.sources[index];
+      if (!source) return;
+      const view = byId('source-view');
+      view.hidden = false;
+      view.replaceChildren(node('h3', '', '原文 · ' + textValue(source.id)), node('p', 'source-content', textValue(source.content, '未返回原文内容')), node('p', 'file-path', '文件路径：' + textValue(source.file_path)));
+      Array.from(byId('source-cards').children).forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
+      if (jump) { view.scrollIntoView({ block: 'start', behavior: 'auto' }); view.focus({ preventScroll: true }); }
+    }
+    function renderSources() {
+      const container = byId('source-cards');
+      container.replaceChildren();
+      sourceMap.clear();
+      snapshot.sources.forEach((source, index) => {
+        sourceMap.set(String(source.id), index);
+        const button = node('button', 'source-card');
+        button.type = 'button';
+        button.setAttribute('aria-pressed', 'false');
+        button.setAttribute('aria-controls', 'source-view');
+        button.append(node('strong', '', textValue(source.id)), node('span', '', textValue(source.content, '查看原文')));
+        button.addEventListener('click', () => selectSource(index));
+        container.append(button);
+      });
+      if (snapshot.sources.length) selectSource(0);
+      else { container.append(node('p', 'empty', '当前存储没有返回原文。')); byId('source-view').hidden = true; }
+    }
+    function markSelected(container, index) {
+      Array.from(container.children).forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
+    }
+    function selectEntity(index) {
+      const entity = snapshot.entities[index];
+      const detail = byId('entity-detail');
+      markSelected(byId('entity-list'), index);
+      detail.replaceChildren(node('h3', '', textValue(entity.name, '未命名实体')));
+      const properties = node('dl');
+      properties.append(field('名称 · name', entity.name), field('类型 · type', entity.type), field('描述 · description', entity.description), sourceField(entity.source_ids), field('文件路径 · file_path', entity.file_path));
+      detail.append(properties, vectorDetails(entity.vector), rawDetails(entity.raw));
+    }
+    function selectRelation(index) {
+      const relation = snapshot.relations[index];
+      const detail = byId('relation-detail');
+      markSelected(byId('relation-list'), index);
+      detail.replaceChildren(node('h3', '', textValue(relation.source) + ' —关联— ' + textValue(relation.target)));
+      const properties = node('dl');
+      properties.append(field('端点 A · source', relation.source), field('端点 B · target', relation.target), field('关键词 · keywords', relation.keywords), field('描述 · description', relation.description), field('权重 · weight', relation.weight), sourceField(relation.source_ids), field('文件路径 · file_path', relation.file_path));
+      detail.append(properties, vectorDetails(relation.vector), rawDetails(relation.raw));
+    }
+    function renderItems(kind) {
+      const isEntity = kind === 'entity';
+      const items = isEntity ? snapshot.entities : snapshot.relations;
+      const container = byId(kind + '-list');
+      const detail = byId(kind + '-detail');
+      container.replaceChildren();
+      items.forEach((item, index) => {
+        const button = node('button', 'item-button');
+        button.type = 'button';
+        button.setAttribute('aria-pressed', 'false');
+        button.setAttribute('aria-controls', kind + '-detail');
+        button.append(node('span', '', isEntity ? textValue(item.name, '未命名实体') : textValue(item.source) + ' —关联— ' + textValue(item.target)));
+        if (isEntity) button.append(node('small', '', textValue(item.type, '未返回类型')));
+        button.addEventListener('click', () => isEntity ? selectEntity(index) : selectRelation(index));
+        container.append(button);
+      });
+      if (items.length) { if (isEntity) selectEntity(0); else selectRelation(0); }
+      else { container.append(node('p', 'empty', '当前存储没有返回' + (isEntity ? '实体' : '关系') + '。')); detail.replaceChildren(node('p', 'empty', '暂无可展示的属性。')); }
+    }
+    async function load() {
+      const button = byId('reload');
+      if (button.disabled) return;
+      button.disabled = true;
+      byId('page').setAttribute('aria-busy', 'true');
+      setStatus('正在读取本地 LightRAG 存储…');
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 30000);
+      try {
+        const response = await fetch('/api/entities', { signal: controller.signal, headers: { Accept: 'application/json' }, cache: 'no-store' });
+        let data;
+        try { data = await response.json(); } catch (_) { throw new Error('服务未返回有效 JSON，请检查本地服务日志。'); }
+        if (!data || typeof data !== 'object') throw new Error('接口返回的数据格式不正确。');
+        if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : '读取失败（HTTP ' + response.status + '）。');
+        if (!Array.isArray(data.entities) || !Array.isArray(data.relations) || !Array.isArray(data.sources)) throw new Error('响应缺少实体、关系或原文数组，请检查本地服务日志。');
+        snapshot = data;
+        byId('version').textContent = textValue(data.framework_version);
+        byId('method').textContent = textValue(data.method);
+        byId('sources-total').textContent = String(data.sources.length);
+        byId('entities-total').textContent = String(data.entities.length);
+        byId('relations-total').textContent = String(data.relations.length);
+        byId('entities-count').textContent = data.entities.length + ' 个实体';
+        byId('relations-count').textContent = data.relations.length + ' 条无向关联';
+        renderSources();
+        renderItems('entity');
+        renderItems('relation');
+        setStatus('已读取本地实际存储。点击列表项查看属性，点击来源 ID 回到原文。');
+      } catch (error) {
+        let message = error.message;
+        if (error.name === 'AbortError') message = '读取超过 30 秒，请检查本地 LightRAG 存储是否已就绪。';
+        if (error instanceof TypeError) message = '无法读取本地服务，请检查服务是否已启动。';
+        setStatus(message + ' 可点击「重新读取存储」重试。', true);
+        if (!snapshot.entities.length && !snapshot.relations.length && !snapshot.sources.length) {
+          for (const id of ['source-cards', 'entity-list', 'relation-list']) byId(id).replaceChildren(node('p', 'empty', '本次读取未完成，请重试。'));
+          byId('version').textContent = '暂不可用';
+          for (const id of ['sources-total', 'entities-total', 'relations-total', 'entities-count', 'relations-count']) byId(id).textContent = '未读取';
+        }
+      } finally { window.clearTimeout(timeout); button.disabled = false; byId('page').setAttribute('aria-busy', 'false'); }
+    }
+    byId('reload').addEventListener('click', load);
+    load();
+  </script>
+</body>
+</html>

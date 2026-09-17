@@ -1,0 +1,705 @@
+{
+  "framework": "LightRAG",
+  "framework_version": "1.5.7",
+  "method": "ainsert_custom_kg",
+  "generated_at": "2026-09-16T10:11:01.348359+00:00",
+  "data_origin": "manually curated fictional custom KG; no automatic LLM extraction",
+  "graph_storage": "NetworkXStorage",
+  "vector_storage": "NanoVectorDBStorage",
+  "kv_storage": "JsonKVStorage",
+  "directed": false,
+  "embedding_model": "BAAI/bge-small-zh-v1.5",
+  "embedding_dimensions": 512,
+  "llm_configured": false,
+  "calls": {
+    "embedding": 3,
+    "llm": 0
+  },
+  "entities": [
+    {
+      "name": "陈宇",
+      "type": "Person",
+      "description": "陈宇是支付结果查询接口开发任务的负责人。",
+      "source_ids": [
+        "chunk-89af6ea526853b5d542603c166004337"
+      ],
+      "file_path": "chunk-17.md",
+      "vector": {
+        "id": "ent-a153adcfa90258ae97e73d8c8a4ab480",
+        "dimensions": 512,
+        "head": [
+          -0.0771484375,
+          -0.043731689453125,
+          0.08624267578125,
+          0.030548095703125,
+          0.06439208984375,
+          0.0017480850219726562,
+          -0.06768798828125,
+          0.0682373046875
+        ]
+      },
+      "raw": {
+        "entity_id": "陈宇",
+        "entity_type": "Person",
+        "description": "陈宇是支付结果查询接口开发任务的负责人。",
+        "source_id": "chunk-89af6ea526853b5d542603c166004337",
+        "file_path": "chunk-17.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "支付结果查询接口开发",
+      "type": "Task",
+      "description": "支付结果查询接口开发任务由陈宇负责，9 月 15 日已交付。",
+      "source_ids": [
+        "chunk-89af6ea526853b5d542603c166004337"
+      ],
+      "file_path": "chunk-17.md",
+      "vector": {
+        "id": "ent-2a32dabcb2c70010f0f4d565ea33c4a6",
+        "dimensions": 512,
+        "head": [
+          -0.0220947265625,
+          -0.0110931396484375,
+          0.08099365234375,
+          0.00414276123046875,
+          0.06036376953125,
+          -0.0204925537109375,
+          -0.0225067138671875,
+          0.050384521484375
+        ]
+      },
+      "raw": {
+        "entity_id": "支付结果查询接口开发",
+        "entity_type": "Task",
+        "description": "支付结果查询接口开发任务由陈宇负责，9 月 15 日已交付。",
+        "source_id": "chunk-89af6ea526853b5d542603c166004337",
+        "file_path": "chunk-17.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "支付结果查询接口",
+      "type": "Interface",
+      "description": "按照支付流水号返回处理中、成功或失败；回调改造用它主动查询支付结果。",
+      "source_ids": [
+        "chunk-dea59eb8420a967ce699d3de08b0c0cd"
+      ],
+      "file_path": "chunk-03.md",
+      "vector": {
+        "id": "ent-baac939ba21de57fba7ad8a09354cea4",
+        "dimensions": 512,
+        "head": [
+          -0.035247802734375,
+          -0.038482666015625,
+          0.059783935546875,
+          -0.0018053054809570312,
+          -0.00962066650390625,
+          -0.019683837890625,
+          -0.04815673828125,
+          0.0282745361328125
+        ]
+      },
+      "raw": {
+        "entity_id": "支付结果查询接口",
+        "entity_type": "Interface",
+        "description": "按照支付流水号返回处理中、成功或失败；回调改造用它主动查询支付结果。",
+        "source_id": "chunk-dea59eb8420a967ce699d3de08b0c0cd",
+        "file_path": "chunk-03.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "李明",
+      "type": "Person",
+      "description": "李明是支付回调改造任务的负责人。",
+      "source_ids": [
+        "chunk-6bdcfd4ae28959019954678df0a4a519"
+      ],
+      "file_path": "chunk-18.md",
+      "vector": {
+        "id": "ent-15095d14367f7f02655030d498a4ba03",
+        "dimensions": 512,
+        "head": [
+          -0.07415771484375,
+          -0.0025691986083984375,
+          0.06689453125,
+          0.02618408203125,
+          -0.0144805908203125,
+          -0.03472900390625,
+          -0.01544952392578125,
+          0.017364501953125
+        ]
+      },
+      "raw": {
+        "entity_id": "李明",
+        "entity_type": "Person",
+        "description": "李明是支付回调改造任务的负责人。",
+        "source_id": "chunk-6bdcfd4ae28959019954678df0a4a519",
+        "file_path": "chunk-18.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "支付回调改造",
+      "type": "Task",
+      "description": "支付回调改造包含主动查询补偿和重复回调去重，截至 9 月 16 日处于联调中。",
+      "source_ids": [
+        "chunk-6bdcfd4ae28959019954678df0a4a519"
+      ],
+      "file_path": "chunk-18.md",
+      "vector": {
+        "id": "ent-255fe37fabaccce2c46923f561f1f3f8",
+        "dimensions": 512,
+        "head": [
+          -0.019195556640625,
+          0.004650115966796875,
+          0.044158935546875,
+          -0.00730133056640625,
+          -0.01183319091796875,
+          -0.0174713134765625,
+          0.00946807861328125,
+          -0.001728057861328125
+        ]
+      },
+      "raw": {
+        "entity_id": "支付回调改造",
+        "entity_type": "Task",
+        "description": "支付回调改造包含主动查询补偿和重复回调去重，截至 9 月 16 日处于联调中。",
+        "source_id": "chunk-6bdcfd4ae28959019954678df0a4a519",
+        "file_path": "chunk-18.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "王蕾",
+      "type": "Person",
+      "description": "王蕾负责组织支付联调验收。",
+      "source_ids": [
+        "chunk-34c7ed20deaba292969335ba306765fd"
+      ],
+      "file_path": "chunk-19.md",
+      "vector": {
+        "id": "ent-a4a6de3d61db840fee06b30d79b22731",
+        "dimensions": 512,
+        "head": [
+          -0.0322265625,
+          -0.00501251220703125,
+          0.05078125,
+          0.0294647216796875,
+          0.046295166015625,
+          -0.06622314453125,
+          0.01432037353515625,
+          0.015594482421875
+        ]
+      },
+      "raw": {
+        "entity_id": "王蕾",
+        "entity_type": "Person",
+        "description": "王蕾负责组织支付联调验收。",
+        "source_id": "chunk-34c7ed20deaba292969335ba306765fd",
+        "file_path": "chunk-19.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "支付联调验收",
+      "type": "Task",
+      "description": "支付联调验收依赖查询接口和回调改造完成，截至 9 月 16 日待开始。",
+      "source_ids": [
+        "chunk-34c7ed20deaba292969335ba306765fd"
+      ],
+      "file_path": "chunk-19.md",
+      "vector": {
+        "id": "ent-460d7b1f8934bd41153b4590d1e864ad",
+        "dimensions": 512,
+        "head": [
+          -0.01058197021484375,
+          -0.017303466796875,
+          0.06390380859375,
+          -0.01065826416015625,
+          0.02789306640625,
+          -0.0194091796875,
+          0.0027217864990234375,
+          -0.0193939208984375
+        ]
+      },
+      "raw": {
+        "entity_id": "支付联调验收",
+        "entity_type": "Task",
+        "description": "支付联调验收依赖查询接口和回调改造完成，截至 9 月 16 日待开始。",
+        "source_id": "chunk-34c7ed20deaba292969335ba306765fd",
+        "file_path": "chunk-19.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "支付联调验收规范",
+      "type": "Document",
+      "description": "支付联调验收规范描述回调丢失、重复回调、查询超时用例。",
+      "source_ids": [
+        "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a"
+      ],
+      "file_path": "chunk-11.md",
+      "vector": {
+        "id": "ent-078122a82270f4d3f3456108ed141c03",
+        "dimensions": 512,
+        "head": [
+          -0.0255126953125,
+          -0.04595947265625,
+          0.02447509765625,
+          0.06744384765625,
+          -0.01203155517578125,
+          -0.040008544921875,
+          -0.056671142578125,
+          -0.004131317138671875
+        ]
+      },
+      "raw": {
+        "entity_id": "支付联调验收规范",
+        "entity_type": "Document",
+        "description": "支付联调验收规范描述回调丢失、重复回调、查询超时用例。",
+        "source_id": "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a",
+        "file_path": "chunk-11.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "name": "接口查询约定",
+      "type": "Document",
+      "description": "接口查询约定说明查询状态的含义，以及重复查询和重复回调不得重复发货。",
+      "source_ids": [
+        "chunk-dea59eb8420a967ce699d3de08b0c0cd"
+      ],
+      "file_path": "chunk-03.md",
+      "vector": {
+        "id": "ent-91ef6cdced1796442d8de89fdb7fc0bb",
+        "dimensions": 512,
+        "head": [
+          -0.01480865478515625,
+          -0.033660888671875,
+          0.04901123046875,
+          0.01418304443359375,
+          -0.05828857421875,
+          -0.01922607421875,
+          -0.03912353515625,
+          0.0162353515625
+        ]
+      },
+      "raw": {
+        "entity_id": "接口查询约定",
+        "entity_type": "Document",
+        "description": "接口查询约定说明查询状态的含义，以及重复查询和重复回调不得重复发货。",
+        "source_id": "chunk-dea59eb8420a967ce699d3de08b0c0cd",
+        "file_path": "chunk-03.md",
+        "created_at": 1789553461
+      }
+    }
+  ],
+  "relations": [
+    {
+      "source": "支付结果查询接口开发",
+      "target": "陈宇",
+      "description": "陈宇负责支付结果查询接口开发，接口已在 9 月 15 日交付。",
+      "keywords": "负责人,任务分工",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-89af6ea526853b5d542603c166004337"
+      ],
+      "file_path": "chunk-17.md",
+      "vector": {
+        "id": "rel-5ab4f2925797034a3c132b8252979ae2",
+        "dimensions": 512,
+        "head": [
+          -0.028167724609375,
+          -0.0063323974609375,
+          0.06854248046875,
+          0.00969696044921875,
+          0.06573486328125,
+          0.005222320556640625,
+          -0.050628662109375,
+          0.05633544921875
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "陈宇负责支付结果查询接口开发，接口已在 9 月 15 日交付。",
+        "keywords": "负责人,任务分工",
+        "source_id": "chunk-89af6ea526853b5d542603c166004337",
+        "file_path": "chunk-17.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付结果查询接口",
+      "target": "支付结果查询接口开发",
+      "description": "支付结果查询接口开发任务交付支付结果查询接口，供回调补偿使用。",
+      "keywords": "接口交付,查询能力",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-89af6ea526853b5d542603c166004337"
+      ],
+      "file_path": "chunk-17.md",
+      "vector": {
+        "id": "rel-ed4d452b5c67cab1787ab71e4b23228f",
+        "dimensions": 512,
+        "head": [
+          -0.052642822265625,
+          -0.01560211181640625,
+          0.07244873046875,
+          0.020904541015625,
+          0.0216064453125,
+          -0.044525146484375,
+          -0.039794921875,
+          0.021148681640625
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "支付结果查询接口开发任务交付支付结果查询接口，供回调补偿使用。",
+        "keywords": "接口交付,查询能力",
+        "source_id": "chunk-89af6ea526853b5d542603c166004337",
+        "file_path": "chunk-17.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付回调改造",
+      "target": "李明",
+      "description": "李明负责支付回调改造，截至 9 月 16 日仍在联调。",
+      "keywords": "负责人,任务分工",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-6bdcfd4ae28959019954678df0a4a519"
+      ],
+      "file_path": "chunk-18.md",
+      "vector": {
+        "id": "rel-9a8bcfc79abe5af107e42c92b21fcf41",
+        "dimensions": 512,
+        "head": [
+          -0.059722900390625,
+          0.0211181640625,
+          0.0279388427734375,
+          -0.0017843246459960938,
+          0.01245880126953125,
+          -0.04425048828125,
+          0.0006771087646484375,
+          0.016387939453125
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "李明负责支付回调改造，截至 9 月 16 日仍在联调。",
+        "keywords": "负责人,任务分工",
+        "source_id": "chunk-6bdcfd4ae28959019954678df0a4a519",
+        "file_path": "chunk-18.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付回调改造",
+      "target": "支付结果查询接口",
+      "description": "支付回调改造依赖支付结果查询接口完成主动查询补偿联调。",
+      "keywords": "任务依赖,主动查询补偿",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-6bdcfd4ae28959019954678df0a4a519"
+      ],
+      "file_path": "chunk-18.md",
+      "vector": {
+        "id": "rel-0f132946abdc662eb00ca7cb05992ca8",
+        "dimensions": 512,
+        "head": [
+          -0.07501220703125,
+          0.050506591796875,
+          0.043487548828125,
+          -0.00925445556640625,
+          0.004665374755859375,
+          -0.03546142578125,
+          -0.00759124755859375,
+          0.01457977294921875
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "支付回调改造依赖支付结果查询接口完成主动查询补偿联调。",
+        "keywords": "任务依赖,主动查询补偿",
+        "source_id": "chunk-6bdcfd4ae28959019954678df0a4a519",
+        "file_path": "chunk-18.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付回调改造",
+      "target": "支付结果查询接口开发",
+      "description": "支付回调改造的补偿联调需要支付结果查询接口开发任务先完成。",
+      "keywords": "任务依赖,前置交付",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-6bdcfd4ae28959019954678df0a4a519"
+      ],
+      "file_path": "chunk-18.md",
+      "vector": {
+        "id": "rel-d3a456bca2f5c9f9ecd05d3360a75160",
+        "dimensions": 512,
+        "head": [
+          -0.06915283203125,
+          0.0226287841796875,
+          0.052276611328125,
+          0.01499176025390625,
+          0.01837158203125,
+          -0.0433349609375,
+          -0.0121612548828125,
+          0.01552581787109375
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "支付回调改造的补偿联调需要支付结果查询接口开发任务先完成。",
+        "keywords": "任务依赖,前置交付",
+        "source_id": "chunk-6bdcfd4ae28959019954678df0a4a519",
+        "file_path": "chunk-18.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付联调验收",
+      "target": "王蕾",
+      "description": "王蕾负责组织支付联调验收，截至 9 月 16 日验收待开始。",
+      "keywords": "负责人,验收组织",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-34c7ed20deaba292969335ba306765fd"
+      ],
+      "file_path": "chunk-19.md",
+      "vector": {
+        "id": "rel-78d4b33e0849c76a151c6f0e317e34ac",
+        "dimensions": 512,
+        "head": [
+          -0.002567291259765625,
+          -0.0147857666015625,
+          0.0499267578125,
+          0.0078277587890625,
+          0.059814453125,
+          -0.051971435546875,
+          0.031463623046875,
+          0.0183868408203125
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "王蕾负责组织支付联调验收，截至 9 月 16 日验收待开始。",
+        "keywords": "负责人,验收组织",
+        "source_id": "chunk-34c7ed20deaba292969335ba306765fd",
+        "file_path": "chunk-19.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付回调改造",
+      "target": "支付联调验收",
+      "description": "支付联调验收需要支付回调改造完成，后者仍在联调。",
+      "keywords": "任务依赖,验收前置条件",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-34c7ed20deaba292969335ba306765fd"
+      ],
+      "file_path": "chunk-19.md",
+      "vector": {
+        "id": "rel-dad8da1963a9dbb7324ac2f1ffaddc29",
+        "dimensions": 512,
+        "head": [
+          -0.03955078125,
+          -0.0003688335418701172,
+          0.054168701171875,
+          0.033172607421875,
+          -0.00435638427734375,
+          -0.026885986328125,
+          -0.0263214111328125,
+          0.0029010772705078125
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "支付联调验收需要支付回调改造完成，后者仍在联调。",
+        "keywords": "任务依赖,验收前置条件",
+        "source_id": "chunk-34c7ed20deaba292969335ba306765fd",
+        "file_path": "chunk-19.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "支付结果查询接口开发",
+      "target": "支付联调验收",
+      "description": "支付联调验收需要支付结果查询接口交付；这一前置任务已完成。",
+      "keywords": "任务依赖,验收前置条件",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-34c7ed20deaba292969335ba306765fd"
+      ],
+      "file_path": "chunk-19.md",
+      "vector": {
+        "id": "rel-2b65ec36bb158087fe19117d98d4e874",
+        "dimensions": 512,
+        "head": [
+          -0.04388427734375,
+          -0.00632476806640625,
+          0.04364013671875,
+          0.03961181640625,
+          -0.003383636474609375,
+          -0.0273284912109375,
+          -0.0244598388671875,
+          0.00597381591796875
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "支付联调验收需要支付结果查询接口交付；这一前置任务已完成。",
+        "keywords": "任务依赖,验收前置条件",
+        "source_id": "chunk-34c7ed20deaba292969335ba306765fd",
+        "file_path": "chunk-19.md",
+        "created_at": 1789553461
+      }
+    },
+    {
+      "source": "接口查询约定",
+      "target": "支付联调验收规范",
+      "description": "支付联调验收规范中的状态判断依据接口查询约定，引用查询状态与幂等规则。",
+      "keywords": "文档依据,状态判断",
+      "weight": 1.0,
+      "source_ids": [
+        "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a"
+      ],
+      "file_path": "chunk-11.md",
+      "vector": {
+        "id": "rel-37c5b2ae80944368d2348ddd4e5ab42e",
+        "dimensions": 512,
+        "head": [
+          -0.0255126953125,
+          -0.0220489501953125,
+          0.05438232421875,
+          -0.016815185546875,
+          -0.043701171875,
+          -0.03277587890625,
+          -0.04150390625,
+          0.0293731689453125
+        ]
+      },
+      "raw": {
+        "weight": 1.0,
+        "description": "支付联调验收规范中的状态判断依据接口查询约定，引用查询状态与幂等规则。",
+        "keywords": "文档依据,状态判断",
+        "source_id": "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a",
+        "file_path": "chunk-11.md",
+        "created_at": 1789553461
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "chunk-dea59eb8420a967ce699d3de08b0c0cd",
+      "original_id": "demo:chunk:03",
+      "title": "接口约定：查询结果与幂等规则",
+      "content": "# 接口约定：查询结果与幂等规则\n\n支付结果查询接口由陈宇负责，按照支付流水号返回处理中、成功或失败。只有结果为成功时才推动订单进入已支付状态；处理中应按退避策略再次查询。重复查询和重复回调不得重复发货。支付回调改造依赖这一约定。",
+      "file_path": "chunk-03.md",
+      "raw": {
+        "content": "# 接口约定：查询结果与幂等规则\n\n支付结果查询接口由陈宇负责，按照支付流水号返回处理中、成功或失败。只有结果为成功时才推动订单进入已支付状态；处理中应按退避策略再次查询。重复查询和重复回调不得重复发货。支付回调改造依赖这一约定。",
+        "source_id": "demo:chunk:03",
+        "tokens": 78,
+        "chunk_order_index": 0,
+        "full_doc_id": "demo-custom-kg-payment",
+        "file_path": "chunk-03.md",
+        "status": "processed",
+        "llm_cache_list": [],
+        "create_time": 1789553461,
+        "update_time": 1789553461,
+        "_id": "chunk-dea59eb8420a967ce699d3de08b0c0cd"
+      }
+    },
+    {
+      "id": "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a",
+      "original_id": "demo:chunk:11",
+      "title": "验收规范：依赖两个任务完成",
+      "content": "# 验收规范：依赖两个任务完成\n\n《支付联调验收规范》要求支付结果查询接口和支付回调改造都具备可用测试版本，再执行回调丢失、重复回调、查询超时三个用例。接口返回状态的判断依据引用《接口约定：查询结果与幂等规则》。验收负责人王蕾需要同时核对任务交付和接入方案范围。",
+      "file_path": "chunk-11.md",
+      "raw": {
+        "content": "# 验收规范：依赖两个任务完成\n\n《支付联调验收规范》要求支付结果查询接口和支付回调改造都具备可用测试版本，再执行回调丢失、重复回调、查询超时三个用例。接口返回状态的判断依据引用《接口约定：查询结果与幂等规则》。验收负责人王蕾需要同时核对任务交付和接入方案范围。",
+        "source_id": "demo:chunk:11",
+        "tokens": 96,
+        "chunk_order_index": 0,
+        "full_doc_id": "demo-custom-kg-payment",
+        "file_path": "chunk-11.md",
+        "status": "processed",
+        "llm_cache_list": [],
+        "create_time": 1789553461,
+        "update_time": 1789553461,
+        "_id": "chunk-0b6b67eb16ce0cf8d7aa7add51fa757a"
+      }
+    },
+    {
+      "id": "chunk-89af6ea526853b5d542603c166004337",
+      "original_id": "demo:chunk:17",
+      "title": "最新任务：支付结果查询接口已交付",
+      "content": "# 最新任务：支付结果查询接口已交付\n\n截至 9 月 15 日 17:00，陈宇负责的支付结果查询接口已完成开发并交付测试环境，状态为已完成。支付状态映射问题已解决；支付回调改造可以开始主动查询补偿联调。该记录替代 9 月 7 日任务快照中的开发中状态和 9 月 10 日的延期进展。",
+      "file_path": "chunk-17.md",
+      "raw": {
+        "content": "# 最新任务：支付结果查询接口已交付\n\n截至 9 月 15 日 17:00，陈宇负责的支付结果查询接口已完成开发并交付测试环境，状态为已完成。支付状态映射问题已解决；支付回调改造可以开始主动查询补偿联调。该记录替代 9 月 7 日任务快照中的开发中状态和 9 月 10 日的延期进展。",
+        "source_id": "demo:chunk:17",
+        "tokens": 97,
+        "chunk_order_index": 0,
+        "full_doc_id": "demo-custom-kg-payment",
+        "file_path": "chunk-17.md",
+        "status": "processed",
+        "llm_cache_list": [],
+        "create_time": 1789553461,
+        "update_time": 1789553461,
+        "_id": "chunk-89af6ea526853b5d542603c166004337"
+      }
+    },
+    {
+      "id": "chunk-6bdcfd4ae28959019954678df0a4a519",
+      "original_id": "demo:chunk:18",
+      "title": "最新任务：支付回调改造正在联调",
+      "content": "# 最新任务：支付回调改造正在联调\n\n截至 9 月 16 日 09:00，李明负责的支付回调改造处于联调中，预计 9 月 17 日完成。查询接口已在 9 月 15 日交付，当前剩余工作是验证查询超时后的补偿和重复回调去重。任务没有完成，不能仅凭依赖接口交付就判断整体已完成。",
+      "file_path": "chunk-18.md",
+      "raw": {
+        "content": "# 最新任务：支付回调改造正在联调\n\n截至 9 月 16 日 09:00，李明负责的支付回调改造处于联调中，预计 9 月 17 日完成。查询接口已在 9 月 15 日交付，当前剩余工作是验证查询超时后的补偿和重复回调去重。任务没有完成，不能仅凭依赖接口交付就判断整体已完成。",
+        "source_id": "demo:chunk:18",
+        "tokens": 99,
+        "chunk_order_index": 0,
+        "full_doc_id": "demo-custom-kg-payment",
+        "file_path": "chunk-18.md",
+        "status": "processed",
+        "llm_cache_list": [],
+        "create_time": 1789553461,
+        "update_time": 1789553461,
+        "_id": "chunk-6bdcfd4ae28959019954678df0a4a519"
+      }
+    },
+    {
+      "id": "chunk-34c7ed20deaba292969335ba306765fd",
+      "original_id": "demo:chunk:19",
+      "title": "最新任务：支付联调验收尚未开始",
+      "content": "# 最新任务：支付联调验收尚未开始\n\n截至 9 月 16 日 09:10，王蕾组织的支付联调验收状态为待开始，计划 9 月 18 日执行。支付结果查询接口已完成，但支付回调改造仍在联调，因此验收尚未满足全部前置条件。该状态是本演示截止时间的快照，不代表真实业务实时数据。",
+      "file_path": "chunk-19.md",
+      "raw": {
+        "content": "# 最新任务：支付联调验收尚未开始\n\n截至 9 月 16 日 09:10，王蕾组织的支付联调验收状态为待开始，计划 9 月 18 日执行。支付结果查询接口已完成，但支付回调改造仍在联调，因此验收尚未满足全部前置条件。该状态是本演示截止时间的快照，不代表真实业务实时数据。",
+        "source_id": "demo:chunk:19",
+        "tokens": 94,
+        "chunk_order_index": 0,
+        "full_doc_id": "demo-custom-kg-payment",
+        "file_path": "chunk-19.md",
+        "status": "processed",
+        "llm_cache_list": [],
+        "create_time": 1789553461,
+        "update_time": 1789553461,
+        "_id": "chunk-34c7ed20deaba292969335ba306765fd"
+      }
+    }
+  ],
+  "source_links": {
+    "custom_kg_api": "https://github.com/HKUDS/LightRAG/blob/v1.5.7/lightrag/lightrag.py",
+    "graph_storage": "https://github.com/HKUDS/LightRAG/blob/v1.5.7/lightrag/kg/networkx_impl.py",
+    "vector_storage": "https://github.com/HKUDS/LightRAG/blob/v1.5.7/lightrag/kg/nano_vector_db_impl.py"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-17",
+  "platform": "linux/amd64",
+  "sources": 23,
+  "chunks": 30,
+  "graph_nodes": 66,
+  "graph_relationships": 126,
+  "embedding_model": "BAAI/bge-small-zh-v1.5",
+  "embedding_dimensions": 512,
+  "article_sha256": "75cc592cec24b63808b4a9b4cf4c41a0e51e588c3624bc3e6e772be5dc94da57",
+  "images": [
+    {
+      "tag": "rag-demo-web:20260917",
+      "id": "sha256:b3d97b3eebc8554c9d00b746114477f1d20f139b1f1e66d9605a49a366757831",
+      "repo_digests": [
+        "rag-demo-web@sha256:b3d97b3eebc8554c9d00b746114477f1d20f139b1f1e66d9605a49a366757831"
+      ],
+      "architecture": "amd64"
+    },
+    {
+      "tag": "neo4j:5.26-community",
+      "id": "sha256:bb268a2f1b4f3c79e4bd1a00a82a6e63bbd4fcc4088da03c1b2380655f256cb2",
+      "repo_digests": [
+        "neo4j@sha256:bb268a2f1b4f3c79e4bd1a00a82a6e63bbd4fcc4088da03c1b2380655f256cb2"
+      ],
+      "architecture": "amd64"
+    },
+    {
+      "tag": "milvusdb/milvus:v2.6.4",
+      "id": "sha256:27f1732a6668c813ee96d21364e3ba220ce1dd1d6e07660106d646dc33d1c654",
+      "repo_digests": [
+        "milvusdb/milvus@sha256:27f1732a6668c813ee96d21364e3ba220ce1dd1d6e07660106d646dc33d1c654"
+      ],
+      "architecture": "amd64"
+    },
+    {
+      "tag": "zilliz/attu:v2.6.5",
+      "id": "sha256:ba1a8e0e30059922d119023014fd46c6aef7b7c70fa166ae233d65e89f490624",
+      "repo_digests": [
+        "zilliz/attu@sha256:ba1a8e0e30059922d119023014fd46c6aef7b7c70fa166ae233d65e89f490624"
+      ],
+      "architecture": "amd64"
+    },
+    {
+      "tag": "quay.io/coreos/etcd:v3.5.18",
+      "id": "sha256:d0a641d5fbcc89678c931a61b7de7b8a1cf097149f135c9c73bc81d076a1494b",
+      "repo_digests": [
+        "quay.io/coreos/etcd@sha256:d0a641d5fbcc89678c931a61b7de7b8a1cf097149f135c9c73bc81d076a1494b"
+      ],
+      "architecture": "amd64"
+    },
+    {
+      "tag": "minio/minio:RELEASE.2024-12-18T13-15-44Z",
+      "id": "sha256:1dce27c494a16bae114774f1cec295493f3613142713130c2d22dd5696be6ad3",
+      "repo_digests": [
+        "minio/minio@sha256:1dce27c494a16bae114774f1cec295493f3613142713130c2d22dd5696be6ad3"
+      ],
+      "architecture": "amd64"
+    }
+  ]
+}
