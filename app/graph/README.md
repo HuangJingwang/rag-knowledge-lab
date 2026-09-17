@@ -19,7 +19,7 @@ python graph/seed_graph.py
 
 配置键为 `NEO4J_URI`、`NEO4J_USER`（也接受 `NEO4J_USERNAME`）、`NEO4J_PASSWORD`、`NEO4J_DATABASE`。脚本不会显示密码。所有节点限制为 `RagDemo` 标签和 `demo:` ID 前缀，使用 `MERGE`，重复运行不会叠加节点和边，不会清库。重新导入只更新这批示例属性；原有向量等额外属性会保留。
 
-## 分享时建议只演示这四组查询
+## 常用查询示例
 
 从 `demo_queries.cypher` 复制一段查询到 Neo4j Browser，一次运行一个完整查询。
 

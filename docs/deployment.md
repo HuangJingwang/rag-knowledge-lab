@@ -1,4 +1,4 @@
-# RAG 分享网站 · Docker 部署包
+# RAG Knowledge Lab · Docker 部署说明
 
 这是一份独立快照，包含原文阅读工作区、检索与关系图、九个文章案例、完整技术文章、虚构语料，以及本地中文 Embedding 模型。无需安装宿主机 Python，也不需要填写模型 API Key。
 
@@ -26,7 +26,7 @@ PowerShell 的复制命令可用 `Copy-Item .env.example .env`。构建耗时与
 | 默认入口 | 内容 |
 | --- | --- |
 | http://localhost:8018/ | 原文工作区、Chunk 标注、提问与证据定位 |
-| http://localhost:8018/article/ | 完整分享文章，所有插图内嵌 |
+| http://localhost:8018/article/ | 完整技术文章，所有插图内嵌 |
 | http://localhost:8018/examples | 九种技术案例 |
 | http://localhost:8018/entities | LightRAG 实体、关系与来源 |
 | http://localhost:8000/ | Attu：查看 Milvus 数据；连接 `milvus:19530`，无需认证 |
@@ -78,18 +78,18 @@ docker compose up -d web
 
 导入按固定 ID 更新，不清库；从 JSON 删除记录不会自动清除数据库旧记录。`docker compose down` 会删除容器和网络，但保留数据卷。不要加 `-v`，除非确实要丢弃这套演示数据。
 
-## 局域网分享
+## 局域网访问
 
 网站默认监听 `0.0.0.0`，同局域网设备访问 `http://本机局域网IP:8018/`，文章在 `/article/`。修改 `WEB_PORT` 后使用对应端口。需要保持 Docker 和电脑运行，并允许系统防火墙放行该端口。
 
-数据库管理界面默认只允许本机访问。如果分享时也需要其他设备打开 Attu / Neo4j，修改 `.env`：
+数据库管理界面默认只允许本机访问。如果需要其他设备打开 Attu / Neo4j，修改 `.env`：
 
 ```dotenv
 ADMIN_BIND=0.0.0.0
 PUBLIC_HOST=你的局域网IP
 ```
 
-然后执行 `docker compose up -d`。远程 Neo4j 连接地址使用 `bolt://你的局域网IP:7687`（或修改后的 Bolt 端口）。`PUBLIC_HOST` 不能填写 `0.0.0.0`。这套无业务认证的演示网站与 Attu 用于可信局域网分享，不作为公网服务。
+然后执行 `docker compose up -d`。远程 Neo4j 连接地址使用 `bolt://你的局域网IP:7687`（或修改后的 Bolt 端口）。`PUBLIC_HOST` 不能填写 `0.0.0.0`。这套无业务认证的演示网站与 Attu 用于本机或可信局域网，不作为公网服务。
 
 ## 完全离线搬到另一台电脑
 
